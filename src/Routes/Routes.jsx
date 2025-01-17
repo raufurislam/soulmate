@@ -4,6 +4,7 @@ import Home from "../pages/Home/Home/Home";
 import AuthPage from "../pages/AuthPage/AuthPage/AuthPage";
 import Login from "../pages/AuthPage/Login/Login";
 import SignUp from "../pages/AuthPage/SignUp/SignUp";
+import Dashboard from "../pages/Dashboard/Dashboard";
 
 export const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "biodatas",
+        element: <h1>biodatas</h1>,
       },
       {
         path: "auth",
@@ -27,6 +32,16 @@ export const router = createBrowserRouter([
             element: <SignUp></SignUp>,
           },
         ],
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: "editBiodata",
+        element: <h1>Edit Bio</h1>,
       },
     ],
   },

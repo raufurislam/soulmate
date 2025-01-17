@@ -7,8 +7,6 @@ const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isMenuOpen, setMenuOpen] = useState(false);
 
-  const toggleMenu = () => setMenuOpen(!isMenuOpen);
-
   const handleLogout = () => {
     Swal.fire({
       title: "Are you sure?",

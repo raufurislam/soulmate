@@ -103,8 +103,8 @@ const Login = () => {
             </button>
             <br />
             <br />
-            <SocialLogin />
           </form>
+          <SocialLogin />
           <p className="text-center mt-4 text-gray-700">
             Don't have an account?
             <Link to="/auth/signUp" className="text-green-500 cursor-pointer">
