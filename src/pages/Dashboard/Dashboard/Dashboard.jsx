@@ -4,6 +4,7 @@ import { useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { FiMenu } from "react-icons/fi";
+import useAdmin from "../../../hooks/useAdmin";
 
 const Dashboard = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -11,7 +12,8 @@ const Dashboard = () => {
   const { user, logOut } = useAuth();
 
   // TODO: get admin value from the database
-  const isAdmin = true;
+  // const isAdmin = true;
+  const [isAdmin] = useAdmin();
 
   const handleLogout = () => {
     Swal.fire({

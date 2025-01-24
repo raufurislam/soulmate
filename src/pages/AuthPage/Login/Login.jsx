@@ -29,13 +29,13 @@ const Login = () => {
   };
 
   return (
-    <div className="max-w-screen-xl mx-auto px-28 py-4">
+    <div className="max-w-screen-xl mx-auto px-4 lg:px-28 py-4">
       <Helmet>
         <title>Soulmate | Login</title>
       </Helmet>
       <div className="flex flex-col md:flex-row justify-between items-center bg-white rounded-2xl border">
         {/* Image Section */}
-        <div className="md:w-1/2 bg-gradient-to-b from-blue-50 to-blue-100 rounded-l-xl h-[520px]">
+        <div className="md:w-1/2 bg-gradient-to-b from-blue-50 to-blue-100 rounded-l-xl h-80 md:h-[520px]">
           <img
             src={loginImg}
             alt="Login"
@@ -44,7 +44,7 @@ const Login = () => {
         </div>
 
         {/* Login Form */}
-        <div className="md:w-1/2 p-10">
+        <div className="md:w-1/2 w-full p-4 lg:p-10">
           <h2 className="font-semibold text-3xl mb-2">Welcome Back!</h2>
           <p className="text-gray-700 mb-6">Enter your email and password</p>
           <form onSubmit={handleLogin}>

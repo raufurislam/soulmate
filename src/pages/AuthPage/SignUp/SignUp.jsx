@@ -70,13 +70,13 @@ const SignUp = () => {
   };
 
   return (
-    <div className="max-w-screen-xl mx-auto px-28 py-4">
+    <div className="max-w-screen-xl mx-auto px-4 lg:px-28 py-4">
       <Helmet>
         <title>Soulmate | Sign Up</title>
       </Helmet>
       <div className="flex flex-col md:flex-row justify-between items-center bg-white rounded-2xl border">
         {/* Image Section */}
-        <div className="md:w-1/2 bg-gradient-to-b from-blue-50 to-blue-100 rounded-l-xl h-[700px]">
+        <div className="md:w-1/2 bg-gradient-to-b from-blue-50 to-blue-100 rounded-l-xl h-96 lg:h-[700px]">
           <img
             src={signUpImg}
             alt="Login"
@@ -85,7 +85,7 @@ const SignUp = () => {
         </div>
 
         {/* Sign Up Form */}
-        <div className="md:w-1/2 p-10">
+        <div className="md:w-1/2 w-full p-4 lg:p-10">
           <h2 className="font-semibold text-3xl mb-2">Sign Up!</h2>
           <p className="text-gray-700 mb-6">
             Please fill the form for Registration
