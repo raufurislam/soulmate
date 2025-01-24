@@ -2,8 +2,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-toastify";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const SocialLogin = () => {
+  const axiosPublic = useAxiosPublic();
   const { googleSignIn, setUser } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
@@ -11,6 +13,14 @@ const SocialLogin = () => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
+        const userInfo = {
+          email: result.user?.email,
+          name: result.user?.displayName,
+        };
+        axiosPublic.post("/users", userInfo).then((res) => {
+          console.log(res.data);
+        });
+
         setUser(result.user);
         toast.success("Google sign-in successful!");
         navigate(location?.state?.from || "/");

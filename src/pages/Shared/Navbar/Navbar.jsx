@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../Providers/AuthProviders";
+import { FiMenu } from "react-icons/fi";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -35,7 +36,7 @@ const Navbar = () => {
   };
 
   const link = (
-    <div className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900">
+    <ul className="flex flex-col md:flex-row font-medium p-4 md:p-0 space-y-4 md:space-y-0 md:space-x-8 border-gray-100 rounded-lg md:mt-0 md:border-0 bg-white md:bg-transparent lg:flex lg:space-x-8">
       <li>
         <NavLink
           to="/"
@@ -87,7 +88,7 @@ const Navbar = () => {
       {user && user.email && (
         <li>
           <NavLink
-            to="/dashboard"
+            to="/dashboard/viewBiodata"
             className={({ isActive }) =>
               isActive
                 ? "text-[#ED5A6A] font-semibold border-b-2 border-[#ED5A6A] pb-1"
@@ -98,16 +99,14 @@ const Navbar = () => {
           </NavLink>
         </li>
       )}
-    </div>
+    </ul>
   );
 
   return (
-    <nav
-    // className="bg-white shadow"
-    >
+    <nav className="relative z-50">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         {/* Website Logo */}
-        <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+        <a href="/" className="flex items-center space-x-3">
           <img
             src="https://img.icons8.com/?size=40&id=33124&format=png"
             className="h-8"
@@ -119,54 +118,67 @@ const Navbar = () => {
         </a>
 
         {/* User Actions */}
-        <div className="flex items-center md:order-2 space-x-3 rtl:space-x-reverse">
-          {/* User Profile Image with Hover Tooltip */}
+        <div className="flex items-center md:order-2 space-x-3 relative">
+          {/* Profile Picture */}
           <div className="relative group">
-            {user && user.photoURL ? (
+            {user?.photoURL ? (
               <img
                 src={user.photoURL}
                 alt="Profile"
-                className="w-16 h-10 rounded-full object-cover border-2 border-gray-200"
+                className="w-10 h-10 rounded-full object-cover border-2 border-gray-200"
               />
             ) : (
               <img
                 src="https://img.icons8.com/?size=80&id=ARWy_JjgohtA&format=png"
                 alt="Default Avatar"
-                className="w-16 h-10 rounded-full object-cover border-2 border-gray-200"
+                className="w-10 h-10 rounded-full object-cover border-2 border-gray-200"
               />
             )}
-
-            {/* Tooltip - Only visible on hover */}
+            {/* Tooltip */}
             <div className="absolute hidden group-hover:block bg-gray-900 text-white text-sm rounded-md px-2 py-1 -bottom-8 left-1/2 transform -translate-x-1/2">
               {user?.displayName || "User"}
             </div>
           </div>
 
-          {/* Logout */}
+          {/* Logout/Login Button */}
           {user && user.email ? (
             <button
               onClick={handleLogout}
-              className="text-white bg-[#ED5A6A] hover:bg-[#d64a5b] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm w-full px-5 py-2.5 text-center"
+              className="hidden lg:block text-white bg-[#ED5A6A] hover:bg-[#d64a5b] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5"
             >
               Logout
             </button>
           ) : (
             <NavLink
               to="/auth/login"
-              className="text-white bg-[#ED5A6A] hover:bg-[#d64a5b] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm w-full px-5 py-2.5 text-center"
+              className="hidden lg:block text-white bg-[#ED5A6A] hover:bg-[#d64a5b] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5"
             >
               Login
             </NavLink>
           )}
+
+          {/* Menu Icon */}
+          <button
+            onClick={() => setMenuOpen(!isMenuOpen)}
+            className="text-gray-700 dark:text-white hover:text-[#ED5A6A] focus:outline-none lg:hidden"
+          >
+            <FiMenu size={24} />
+          </button>
         </div>
 
-        {/* Navigation Links */}
+        {/* Dropdown Menu (Small Screens) */}
         <div
-          className={`items-center justify-between w-full md:flex md:w-auto md:order-1 ${
+          className={`absolute right-4 top-16 bg-white shadow-lg rounded-lg p-4 lg:hidden ${
             isMenuOpen ? "block" : "hidden"
           }`}
+          style={{ minWidth: "200px" }}
         >
-          <ul>{link}</ul>
+          {link}
+        </div>
+
+        {/* Inline Menu (Large Screens) */}
+        <div className="hidden lg:flex lg:items-center lg:space-x-8 lg:order-1">
+          {link}
         </div>
       </div>
     </nav>

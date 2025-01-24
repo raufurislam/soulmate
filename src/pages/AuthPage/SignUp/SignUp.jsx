@@ -6,8 +6,10 @@ import { useState, useContext } from "react";
 import { toast } from "react-toastify";
 import SocialLogin from "../../../components/SocialLogin/SocialLogin";
 import { AuthContext } from "../../../Providers/AuthProviders";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const SignUp = () => {
+  const axiosPublic = useAxiosPublic();
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
   const [photoURL, setPhotoURL] = useState("");
@@ -23,38 +25,6 @@ const SignUp = () => {
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
     return regex.test(password);
   };
-
-  // const handleSignUp = (e) => {
-  //   e.preventDefault();
-
-  //   if (!validatePassword(password)) {
-  //     setError(
-  //       "Password must be at least 8 characters long, contain an uppercase letter, a lowercase letter, and a number."
-  //     );
-  //     return;
-  //   }
-
-  //   createUser(email, password)
-  //     .then((result) => {
-  //       const user = result.user;
-  //       setUser(user);
-
-  //       // Update user profile with name and photo
-  //       updateUserProfile({ displayName: name, photoURL: photo })
-  //         .then(() => {
-  //           toast.success("Registration successful!");
-  //           navigate(location?.state?.from || "/");
-  //         })
-  //         .catch((updateError) => {
-  //           toast.error("Profile update failed. Please try again.");
-  //           console.error(updateError);
-  //         });
-  //     })
-  //     .catch((signUpError) => {
-  //       toast.error("Registration failed. Please check your details.");
-  //       console.error(signUpError);
-  //     });
-  // };
 
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -77,8 +47,18 @@ const SignUp = () => {
           displayName: name,
           photoURL: photoURL,
         }).then(() => {
-          toast.success("Registration successful!");
-          navigate(location?.state?.from || "/");
+          // create user entry in the database
+          const userInfo = {
+            name,
+            email,
+          };
+          axiosPublic.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              console.log("user added to the database");
+              toast.success("Registration successful!");
+              navigate(location?.state?.from || "/");
+            }
+          });
         });
       })
       .catch((signUpError) => {

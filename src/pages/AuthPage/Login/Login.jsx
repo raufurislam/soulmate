@@ -22,7 +22,6 @@ const Login = () => {
         setUser(result.user);
         toast.success("Login successful!");
         navigate(location?.state?.from || "/");
-        // navigate("/"); // Redirect to home or dashboard
       })
       .catch((error) => {
         toast.error(error.message || "Failed to log in.");
