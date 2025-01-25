@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
+import useFavourite from "../../hooks/useFavourite";
 
 const DetailsPage = () => {
   const { id } = useParams();
   const [biodata, setBiodata] = useState(null);
   const [error, setError] = useState("");
+  const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
+  const [favourite, refetch] = useFavourite();
 
   useEffect(() => {
     fetch(`http://localhost:5000/biodatas/${id}`)
@@ -36,6 +43,45 @@ const DetailsPage = () => {
       </div>
     );
   }
+
+  const handleAddFavorite = () => {
+    const isFavorite = favourite.some(
+      (fav) => fav.biodataId === biodata.biodataId
+    );
+
+    if (isFavorite) {
+      Swal.fire({
+        position: "top-center",
+        icon: "info",
+        title: `${biodata.name} is already in your favorites.`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    }
+
+    const favoriteItem = {
+      name: biodata.name,
+      biodataId: biodata.biodataId,
+      permanentDivision: biodata.permanentDivision,
+      occupation: biodata.occupation,
+      email: user.email,
+    };
+
+    axiosSecure.post("/favourites", favoriteItem).then((res) => {
+      console.log(res.data);
+      if (res.data.insertedId) {
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: `${biodata.name} added to your favorites.`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        refetch();
+      }
+    });
+  };
 
   return (
     <div className="px-4 lg:px-32 py-6">
@@ -147,7 +193,10 @@ const DetailsPage = () => {
 
         {/* Buttons Section */}
         <div className="mt-6 flex gap-4">
-          <button className="px-6 py-3 bg-[#ED5A6A] text-white rounded-lg hover:bg-[#d64a5b]">
+          <button
+            onClick={() => handleAddFavorite()}
+            className="px-6 py-3 bg-[#ED5A6A] text-white rounded-lg hover:bg-[#d64a5b]"
+          >
             Add to Favourites
           </button>
           <Link

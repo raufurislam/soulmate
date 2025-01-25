@@ -11,6 +11,7 @@ import ViewBiodata from "../pages/Dashboard/ViewBiodata/ViewBiodata";
 import Biodatas from "../pages/Biodatas/Biodatas/Biodatas";
 import DetailsPage from "../pages/DetailsPage/DetailsPage";
 import ManageUser from "../pages/Dashboard/ManageUser/ManageUser";
+import MyFavouritesPage from "../pages/Dashboard/Favourites/MyFavouritesPage";
 
 export const router = createBrowserRouter([
   {
@@ -27,7 +28,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "biodatas/:id",
-        element: <DetailsPage></DetailsPage>,
+        element: (
+          <PrivateRoute>
+            <DetailsPage></DetailsPage>
+          </PrivateRoute>
+        ),
       },
       {
         path: "auth",
@@ -76,7 +81,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "favourites",
-        element: <h1>favourites</h1>,
+        element: <MyFavouritesPage></MyFavouritesPage>,
       },
 
       // Admin Route
