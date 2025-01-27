@@ -3,10 +3,12 @@ import { Link, NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../Providers/AuthProviders";
 import { FiMenu } from "react-icons/fi";
+import useAdmin from "../../../hooks/useAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const [isAdmin] = useAdmin();
 
   const handleLogout = () => {
     Swal.fire({
@@ -85,7 +87,7 @@ const Navbar = () => {
           Contact Us
         </NavLink>
       </li>
-      {user && user.email && (
+      {user && !isAdmin && (
         <li>
           <NavLink
             to="/dashboard/viewBiodata"
@@ -99,6 +101,34 @@ const Navbar = () => {
           </NavLink>
         </li>
       )}
+      {user && isAdmin && (
+        <li>
+          <NavLink
+            to="/dashboard/adminDashboard"
+            className={({ isActive }) =>
+              isActive
+                ? "text-[#ED5A6A] font-semibold border-b-2 border-[#ED5A6A] pb-1"
+                : "text-gray-700 hover:text-[#ED5A6A]"
+            }
+          >
+            Dashboard
+          </NavLink>
+        </li>
+      )}
+      {/* {user && user.email && (
+        <li>
+          <NavLink
+            to="/dashboard/viewBiodata"
+            className={({ isActive }) =>
+              isActive
+                ? "text-[#ED5A6A] font-semibold border-b-2 border-[#ED5A6A] pb-1"
+                : "text-gray-700 hover:text-[#ED5A6A]"
+            }
+          >
+            Dashboard
+          </NavLink>
+        </li>
+      )} */}
     </ul>
   );
 
