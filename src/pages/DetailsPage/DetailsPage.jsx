@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
@@ -7,7 +7,10 @@ import useFavourite from "../../hooks/useFavourite";
 
 const DetailsPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate(); // Initialize useNavigate
   const [biodata, setBiodata] = useState(null);
+  const [similarBiodata, setSimilarBiodata] = useState([]);
+  const [showMore, setShowMore] = useState(false);
   const [error, setError] = useState("");
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
@@ -21,9 +24,21 @@ const DetailsPage = () => {
         }
         return res.json();
       })
-      .then((data) => setBiodata(data))
+      .then((data) => {
+        setBiodata(data);
+
+        // Fetch similar biodata
+        fetch(`http://localhost:5000/biodatas?biodataType=${data.biodataType}`)
+          .then((res) => res.json())
+          .then((similarData) =>
+            setSimilarBiodata(similarData.filter((item) => item._id !== id))
+          )
+          .catch(() => setError("Failed to fetch similar biodata."));
+      })
       .catch((err) => setError(err.message));
   }, [id]);
+
+  // console.log(biodata.biodataId);
 
   if (error) {
     return (
@@ -82,6 +97,13 @@ const DetailsPage = () => {
       }
     });
   };
+
+  const handleViewProfile = (profileId) => {
+    setShowMore(false); // Reset showMore state
+    navigate(`/biodatas/${profileId}`);
+  };
+
+  console.log(biodata.biodataId);
 
   return (
     <div className="px-4 lg:px-32 py-6">
@@ -178,6 +200,7 @@ const DetailsPage = () => {
           </div>
         </div>
 
+        {/* only premium member and those who payment for request contact information only can see this section  */}
         {/* Contact Information Section */}
         <h2 className="text-xl font-bold mt-6 mb-4">Contact Information</h2>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -199,13 +222,58 @@ const DetailsPage = () => {
           >
             Add to Favourites
           </button>
+
           <Link
-            to="/dashboard/editBiodata"
+            to={`/dashboard/payment/${biodata.biodataId}`}
             className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-500"
           >
             Request Contact Information
           </Link>
         </div>
+      </div>
+
+      {/* Show More Section */}
+      <div className="mt-8">
+        <button
+          onClick={() => setShowMore((prev) => !prev)}
+          className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-500"
+        >
+          {showMore ? "Show Less" : "Show More"}
+        </button>
+
+        {showMore && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+            {similarBiodata.slice(0, 3).map((biodata) => (
+              <div
+                key={biodata._id}
+                className="bg-white rounded-xl p-4 shadow-md"
+              >
+                <img
+                  className="w-24 h-24 object-cover rounded-full mx-auto"
+                  src={
+                    biodata.photoURL ||
+                    "https://static.vecteezy.com/system/resources/previews/007/407/994/non_2x/monochrome-icon-people-icon-design-user-icon-in-flat-style-vector.jpg"
+                  }
+                  alt={biodata.name || "No Name"}
+                />
+                <h1 className="text-xl font-semibold text-center mt-2">
+                  {biodata.name || "Name N/A"}
+                </h1>
+                <h2 className="text-lg text-center">
+                  {biodata.occupation || "Occupation N/A"}
+                </h2>
+                <div className="flex justify-center mt-4">
+                  <button
+                    onClick={() => handleViewProfile(biodata._id)} // Updated to use handleViewProfile
+                    className="text-white bg-[#ED5A6A] hover:bg-[#d64a5b] rounded-full px-5 py-2.5"
+                  >
+                    View Profile
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

@@ -12,6 +12,9 @@ import Biodatas from "../pages/Biodatas/Biodatas/Biodatas";
 import DetailsPage from "../pages/DetailsPage/DetailsPage";
 import ManageUser from "../pages/Dashboard/ManageUser/ManageUser";
 import MyFavouritesPage from "../pages/Dashboard/Favourites/MyFavouritesPage";
+import Payment from "../pages/Dashboard/Payment/Payment";
+import ApprovedContactRequest from "../pages/Dashboard/ApprovedContactRequest/ApprovedContactRequest";
+import MyContactRequest from "../pages/Dashboard/MyContactRequest/MyContactRequest";
 
 export const router = createBrowserRouter([
   {
@@ -77,11 +80,15 @@ export const router = createBrowserRouter([
       },
       {
         path: "myContact",
-        element: <h1>myContact</h1>,
+        element: <MyContactRequest></MyContactRequest>,
       },
       {
         path: "favourites",
         element: <MyFavouritesPage></MyFavouritesPage>,
+      },
+      {
+        path: "payment/:id",
+        element: <Payment></Payment>,
       },
 
       // Admin Route
@@ -93,6 +100,10 @@ export const router = createBrowserRouter([
         path: "manage",
         element: <ManageUser></ManageUser>,
       },
+      {
+        path: "approvedContactRequest",
+        element: <ApprovedContactRequest></ApprovedContactRequest>,
+      },
     ],
   },
   {
@@ -100,3 +111,5 @@ export const router = createBrowserRouter([
     element: <h1>ErrorPages</h1>,
   },
 ]);
+
+// https://meet.google.com/mkp-riks-cpw

@@ -45,7 +45,6 @@ const Dashboard = () => {
 
   const link = (
     <ul className="flex flex-col  lg:flex-row font-medium p-4 md:p-0 space-y-4 lg:space-y-0 lg:space-x-8 border-gray-100 rounded-lg md:mt-0 md:border-0 bg-white md:bg-transparent lg:flex">
-      {/* flex flex-col lg:flex-row font-medium p-4 md:p-0 space-y-4 lg:space-y-0 lg:space-x-8 */}
       {isAdmin ? (
         <>
           <li>
