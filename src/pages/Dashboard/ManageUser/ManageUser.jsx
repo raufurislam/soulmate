@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { FaSearch } from "react-icons/fa";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { Table } from "flowbite-react";
 import Swal from "sweetalert2";
 
 const ManageUser = () => {
@@ -11,7 +10,7 @@ const ManageUser = () => {
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosSecure.get("/users");
-      return res.data;
+      return Array.isArray(res.data) ? res.data : [];
     },
   });
 
@@ -29,6 +28,24 @@ const ManageUser = () => {
         });
       }
     });
+  };
+
+  const handlePremiumAccept = async (userId) => {
+    try {
+      const response = await axiosSecure.patch(`/users/role/${userId}`, {
+        role: "premium",
+      });
+
+      if (response.data.success) {
+        alert("User has been successfully upgraded to premium!");
+        refetch(); // Refresh data after updating the role
+      } else {
+        alert(response.data.message || "Something went wrong.");
+      }
+    } catch (error) {
+      console.error("Error approving premium request:", error);
+      alert("Failed to approve the request. Please try again later.");
+    }
   };
 
   return (
@@ -86,37 +103,41 @@ const ManageUser = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user, index) => (
-              <tr
-                key={user._id}
-                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-stone-200 dark:hover:bg-gray-600"
-              >
-                <td className="px-6 py-4">{index + 1}</td>
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+            {Array.isArray(users) &&
+              users.map((user, index) => (
+                <tr
+                  key={user._id}
+                  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-stone-200 dark:hover:bg-gray-600"
                 >
-                  {user.name}
-                </th>
-                <td className="px-6 py-4">{user.email}</td>
-                <td className="px-6 py-4">
-                  {user.role === "admin" ? (
-                    "Admin"
-                  ) : (
+                  <td className="px-6 py-4">{index + 1}</td>
+                  <th
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    {user.name}
+                  </th>
+                  <td className="px-6 py-4">{user.email}</td>
+                  <td className="px-6 py-4">
+                    {user.role === "admin" ? (
+                      "Admin"
+                    ) : (
+                      <button
+                        onClick={() => handleMakeAdmin(user)}
+                        className="text-white bg-[#ED5A6A] hover:bg-[#d64a5b] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-xs w-auto px-5 py-2.5 text-center"
+                      >
+                        Make Admin
+                      </button>
+                    )}
+                  </td>
+                  <td className="px-6 py-4">
                     <button
-                      onClick={() => handleMakeAdmin(user)}
-                      className="text-white bg-[#ED5A6A] hover:bg-[#d64a5b] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-xs w-auto px-5 py-2.5 text-center"
+                      onClick={() => handlePremiumAccept(user._id)}
+                      className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-xs w-auto px-5 py-2.5 text-center"
                     >
-                      Make Admin
+                      Make Premium
                     </button>
-                  )}
-                </td>
-                <td className="px-6 py-4">
-                  <button className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-xs w-auto px-5 py-2.5 text-center">
-                    Make Premium
-                  </button>
-                </td>
-                {/* <td className="px-6 py-4 text-right">
+                  </td>
+                  {/* <td className="px-6 py-4 text-right">
                   <a
                     href="#"
                     className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
@@ -124,8 +145,8 @@ const ManageUser = () => {
                     Edit
                   </a>
                 </td> */}
-              </tr>
-            ))}
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

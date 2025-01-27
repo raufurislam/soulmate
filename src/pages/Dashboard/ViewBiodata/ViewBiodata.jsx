@@ -2,10 +2,14 @@ import React, { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const ViewBiodata = () => {
   const { user } = useAuth();
   const [biodata, setBiodata] = useState(null);
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     // Fetch the user's biodata
@@ -18,6 +22,37 @@ const ViewBiodata = () => {
         console.error("Error fetching biodata:", error);
       });
   }, [user.email]);
+
+  const { data: users = [], refetch } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/users/email/${user.email}`);
+      console.log(res.data);
+      return res.data;
+    },
+  });
+
+  const handleMakePremium = async () => {
+    try {
+      const response = await axiosSecure.patch(`/users`, {
+        role: "requestedPremium", // role to be updated
+        biodataId: biodata?.biodataId, // Send the biodataId as well
+      });
+      Swal.fire({
+        icon: "success",
+        title: "Success!",
+        text: "Your request for premium has been sent!",
+      });
+      refetch();
+    } catch (error) {
+      console.error("Error sending premium request:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Error!",
+        text: "Something went wrong. Please try again.",
+      });
+    }
+  };
 
   return (
     <div className="px-4 lg:px-32 py-6">
@@ -129,9 +164,28 @@ const ViewBiodata = () => {
 
         {/* Buttons Section */}
         <div className="mt-6 flex gap-4">
-          <button className="px-6 py-3 bg-[#ED5A6A] text-white rounded-lg hover:bg-[#d64a5b]">
-            Make Premium
-          </button>
+          {biodata?.role === "premium" ? (
+            <button
+              className="px-6 py-3 bg-gray-400 text-white rounded-lg"
+              disabled
+            >
+              Already Premium
+            </button>
+          ) : biodata?.role === "requestPremium" ? (
+            <button
+              className="px-6 py-3 bg-yellow-400 text-white rounded-lg"
+              disabled
+            >
+              Premium Request Sent
+            </button>
+          ) : (
+            <button
+              onClick={handleMakePremium}
+              className="px-6 py-3 bg-[#ED5A6A] text-white rounded-lg hover:bg-[#d64a5b]"
+            >
+              Make Premium
+            </button>
+          )}
           <Link
             to="/dashboard/editBiodata"
             className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-500"

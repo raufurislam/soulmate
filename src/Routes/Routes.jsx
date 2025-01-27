@@ -15,6 +15,7 @@ import MyFavouritesPage from "../pages/Dashboard/Favourites/MyFavouritesPage";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import ApprovedContactRequest from "../pages/Dashboard/ApprovedContactRequest/ApprovedContactRequest";
 import MyContactRequest from "../pages/Dashboard/MyContactRequest/MyContactRequest";
+import ApprovedPremium from "../pages/Dashboard/ApprovedPremium/ApprovedPremium";
 
 export const router = createBrowserRouter([
   {
@@ -104,6 +105,10 @@ export const router = createBrowserRouter([
         path: "approvedContactRequest",
         element: <ApprovedContactRequest></ApprovedContactRequest>,
       },
+      {
+        path: "approvedPremium",
+        element: <ApprovedPremium></ApprovedPremium>,
+      },
     ],
   },
   {
@@ -113,3 +118,4 @@ export const router = createBrowserRouter([
 ]);
 
 // https://meet.google.com/mkp-riks-cpw
+// https://meet.google.com/pmb-zgdr-syg
