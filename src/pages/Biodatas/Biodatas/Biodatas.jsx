@@ -4,26 +4,41 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const Biodatas = () => {
   const [biodatas, setBiodatas] = useState([]);
+  const [filteredBiodatas, setFilteredBiodatas] = useState([]);
   const [filters, setFilters] = useState({
     minAge: "",
     maxAge: "",
     biodataType: "",
     division: "",
   });
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const axiosPublic = useAxiosPublic();
+
+  const itemsPerPage = 6;
 
   const fetchBiodatas = () => {
     const query = new URLSearchParams(filters).toString();
     axiosPublic
       .get(`/biodatas?${query}`)
-      .then((res) => setBiodatas(res.data))
+      .then((res) => {
+        setBiodatas(res.data);
+        setTotalPages(Math.ceil(res.data.length / itemsPerPage)); // Calculate total pages
+      })
       .catch((error) => console.error("Error fetching biodatas:", error));
   };
 
   useEffect(() => {
     fetchBiodatas();
-  }, []);
+  }, [filters]); // Run fetch when filters change
+
+  useEffect(() => {
+    // Paginate biodatas based on currentPage and itemsPerPage
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    setFilteredBiodatas(biodatas.slice(startIndex, endIndex));
+  }, [biodatas, currentPage]);
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
@@ -31,8 +46,13 @@ const Biodatas = () => {
   };
 
   const handleApplyFilters = () => {
+    setCurrentPage(1); // Reset to the first page when filters are applied
     fetchBiodatas();
     setIsDrawerOpen(false); // Close the drawer after applying filters
+  };
+
+  const handlePagination = (pageNumber) => {
+    setCurrentPage(pageNumber);
   };
 
   return (
@@ -186,8 +206,8 @@ const Biodatas = () => {
 
         {/* Biodata Cards Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 w-full">
-          {biodatas.length > 0 ? (
-            biodatas.map((biodata) => (
+          {filteredBiodatas.length > 0 ? (
+            filteredBiodatas.map((biodata) => (
               <div
                 key={biodata._id}
                 className="bg-white rounded-xl p-4 shadow-md"
@@ -230,6 +250,46 @@ const Biodatas = () => {
             </p>
           )}
         </div>
+      </div>
+
+      {/* Pagination */}
+      <div className="max-w-screen-xl mx-auto p-5 flex justify-center">
+        <nav aria-label="Page navigation example">
+          <ul className="inline-flex -space-x-px text-sm">
+            <li>
+              <button
+                onClick={() => handlePagination(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >
+                Previous
+              </button>
+            </li>
+            {[...Array(totalPages).keys()].map((pageNumber) => (
+              <li key={pageNumber}>
+                <button
+                  onClick={() => handlePagination(pageNumber + 1)}
+                  className={`flex items-center justify-center px-3 h-8 leading-tight ${
+                    currentPage === pageNumber + 1
+                      ? "text-blue-600 bg-blue-50"
+                      : "text-gray-500 bg-white"
+                  } border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
+                >
+                  {pageNumber + 1}
+                </button>
+              </li>
+            ))}
+            <li>
+              <button
+                onClick={() => handlePagination(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >
+                Next
+              </button>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
   );

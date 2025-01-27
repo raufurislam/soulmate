@@ -5,10 +5,13 @@ import "react-toastify/dist/ReactToastify.css";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import Modal from "react-modal"; // Import react-modal
 
 const ViewBiodata = () => {
   const { user } = useAuth();
   const [biodata, setBiodata] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility state
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false); // Button disabled state
   const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
@@ -32,17 +35,21 @@ const ViewBiodata = () => {
     },
   });
 
+  // Function to handle Make Premium after confirmation
   const handleMakePremium = async () => {
     try {
       const response = await axiosSecure.patch(`/users`, {
         role: "requestedPremium", // role to be updated
         biodataId: biodata?.biodataId, // Send the biodataId as well
       });
+
       Swal.fire({
         icon: "success",
         title: "Success!",
         text: "Your request for premium has been sent!",
       });
+
+      setIsButtonDisabled(true); // Disable the button after successful patch
       refetch();
     } catch (error) {
       console.error("Error sending premium request:", error);
@@ -53,6 +60,22 @@ const ViewBiodata = () => {
       });
     }
   };
+
+  const openModal = () => {
+    setIsModalOpen(true); // Show modal
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false); // Close modal
+  };
+
+  const handleConfirmMakePremium = () => {
+    handleMakePremium(); // Perform the action
+    closeModal(); // Close the modal after action
+  };
+
+  // Determine role for button rendering
+  const userRole = users?.role;
 
   return (
     <div className="px-4 lg:px-32 py-6">
@@ -164,7 +187,7 @@ const ViewBiodata = () => {
 
         {/* Buttons Section */}
         <div className="mt-6 flex gap-4">
-          {biodata?.role === "premium" ? (
+          {/* {biodata?.role === "premium" ? (
             <button
               className="px-6 py-3 bg-gray-400 text-white rounded-lg"
               disabled
@@ -180,8 +203,33 @@ const ViewBiodata = () => {
             </button>
           ) : (
             <button
-              onClick={handleMakePremium}
+              onClick={openModal} // Open the modal when clicked
               className="px-6 py-3 bg-[#ED5A6A] text-white rounded-lg hover:bg-[#d64a5b]"
+              disabled={isButtonDisabled} // Disable button after patch
+            >
+              Make Premium
+            </button>
+          )} */}
+
+          {userRole === "premium" ? (
+            <button
+              className="px-6 py-3 bg-gray-400 text-white rounded-lg"
+              disabled
+            >
+              Already Premium
+            </button>
+          ) : userRole === "requestedPremium" ? (
+            <button
+              className="px-6 py-3 bg-yellow-400 text-white rounded-lg"
+              disabled
+            >
+              Premium Request Sent
+            </button>
+          ) : (
+            <button
+              onClick={openModal}
+              className="px-6 py-3 bg-[#ED5A6A] text-white rounded-lg hover:bg-[#d64a5b]"
+              disabled={isButtonDisabled}
             >
               Make Premium
             </button>
@@ -194,6 +242,34 @@ const ViewBiodata = () => {
           </Link>
         </div>
       </div>
+
+      {/* Confirmation Modal */}
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        contentLabel="Confirm Make Premium"
+        className="bg-white p-6 rounded-lg shadow-lg w-full sm:w-96 md:w-96 lg:w-96 mx-auto"
+        overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
+        ariaHideApp={false}
+      >
+        <h2 className="text-xl font-semibold text-center mb-4">
+          Are you sure you want to make your biodata Premium?
+        </h2>
+        <div className="flex justify-between">
+          <button
+            onClick={closeModal}
+            className="px-6 py-2 bg-gray-300 text-gray-700 rounded-lg"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={handleConfirmMakePremium}
+            className="px-6 py-2 bg-[#ED5A6A] text-white rounded-lg"
+          >
+            Yes, Make Premium
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 };

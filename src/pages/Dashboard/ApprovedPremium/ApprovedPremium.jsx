@@ -1,6 +1,7 @@
 import React from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 const ApprovedPremium = () => {
   const axiosSecure = useAxiosSecure();
@@ -13,6 +14,24 @@ const ApprovedPremium = () => {
     },
   });
 
+  // const handlePremiumAccept = async (userId) => {
+  //   try {
+  //     const response = await axiosSecure.patch(`/users/role/${userId}`, {
+  //       role: "premium",
+  //     });
+
+  //     if (response.data.success) {
+  //       alert("User has been successfully upgraded to premium!");
+  //       refetch(); // Refresh data after updating the role
+  //     } else {
+  //       alert(response.data.message || "Something went wrong.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error approving premium request:", error);
+  //     alert("Failed to approve the request. Please try again later.");
+  //   }
+  // };
+
   const handlePremiumAccept = async (userId) => {
     try {
       const response = await axiosSecure.patch(`/users/role/${userId}`, {
@@ -20,14 +39,29 @@ const ApprovedPremium = () => {
       });
 
       if (response.data.success) {
-        alert("User has been successfully upgraded to premium!");
+        Swal.fire({
+          icon: "success",
+          title: "Success!",
+          text: "User has been successfully upgraded to premium!",
+          confirmButtonColor: "#3085d6",
+        });
         refetch(); // Refresh data after updating the role
       } else {
-        alert(response.data.message || "Something went wrong.");
+        Swal.fire({
+          icon: "error",
+          title: "Error!",
+          text: response.data.message || "Something went wrong.",
+          confirmButtonColor: "#d33",
+        });
       }
     } catch (error) {
       console.error("Error approving premium request:", error);
-      alert("Failed to approve the request. Please try again later.");
+      Swal.fire({
+        icon: "error",
+        title: "Error!",
+        text: "Failed to approve the request. Please try again later.",
+        confirmButtonColor: "#d33",
+      });
     }
   };
 
