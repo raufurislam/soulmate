@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query"; // Use queryClient to refetch data
+import Swal from "sweetalert2"; // Import SweetAlert2
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const MyContactRequest = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const queryClient = useQueryClient(); // Access React Query's QueryClient
   const [biodatas, setBiodatas] = useState([]); // State to store fetched biodatas
 
   // Fetch biodatas
@@ -13,7 +15,6 @@ const MyContactRequest = () => {
     const fetchBiodatas = async () => {
       try {
         const response = await axiosSecure.get("/biodatas");
-        console.log("Fetched biodatas:", response.data); // Check biodatas
         setBiodatas(response.data);
       } catch (error) {
         console.error("Error fetching biodatas:", error);
@@ -29,7 +30,8 @@ const MyContactRequest = () => {
     );
   };
 
-  const { data: payments = [] } = useQuery({
+  // Fetch payments using React Query
+  const { data: payments = [], refetch } = useQuery({
     queryKey: ["payments", user.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/payments/${user.email}`);
@@ -37,14 +39,34 @@ const MyContactRequest = () => {
     },
   });
 
-  const handleDelete = (paymentId) => {
-    console.log("Handle delete for payment ID:", paymentId);
-    // Add your delete logic here
+  // Handle delete with SweetAlert2 confirmation and success/error feedback
+  const handleDelete = async (paymentId) => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await axiosSecure.delete(`/payments/${paymentId}`);
+        Swal.fire("Deleted!", "Payment has been deleted.", "success");
+        queryClient.invalidateQueries(["payments"]); // Automatically refetch payments
+      } catch (error) {
+        console.error("Error deleting payment:", error);
+        Swal.fire("Error!", "Failed to delete the payment.", "error");
+      }
+    }
   };
 
   return (
-    <div>
-      <h1>Total Payments: {payments.length}</h1>
+    <div className="max-w-screen-xl p-5 mx-auto">
+      <h1 className="text-xl font-bold mb-4">My Contact Requests</h1>
+      <h2 className="text-lg mb-6">Total Payments: {payments.length}</h2>
 
       {/* Table */}
       <div className="overflow-x-auto">
@@ -66,24 +88,36 @@ const MyContactRequest = () => {
               const biodata = getBiodataById(payment.biodataId); // Find biodata using biodataId
               return (
                 <tr key={payment._id} className="hover:bg-gray-50">
+                  {/* Name */}
                   <td className="border border-gray-200 px-4 py-2">
-                    {biodata ? biodata.name : "No Name"}{" "}
-                    {/* Show name if biodata exists */}
+                    {biodata ? biodata.name : "No Name"}
                   </td>
+
+                  {/* Biodata ID */}
                   <td className="border border-gray-200 px-4 py-2">
-                    {payment.biodataId} {/* Show biodataId */}
+                    {payment.biodataId}
                   </td>
+
+                  {/* Status */}
                   <td className="border border-gray-200 px-4 py-2">
-                    {payment.status || "Pending"} {/* Show status */}
+                    {payment.status || "Pending"}
                   </td>
+
+                  {/* Mobile Number */}
                   <td className="border border-gray-200 px-4 py-2">
-                    {biodata ? biodata.mobile : "N/A"}{" "}
-                    {/* Show mobile if biodata exists */}
+                    {payment.status === "approved" && biodata
+                      ? biodata.mobile
+                      : "Wait for admin approval"}
                   </td>
+
+                  {/* Email */}
                   <td className="border border-gray-200 px-4 py-2">
-                    {biodata ? biodata.email : "N/A"}{" "}
-                    {/* Show email if biodata exists */}
+                    {payment.status === "approved" && biodata
+                      ? biodata.email
+                      : "Wait for admin approval"}
                   </td>
+
+                  {/* Actions */}
                   <td className="border border-gray-200 px-4 py-2">
                     <button
                       onClick={() => handleDelete(payment._id)} // Pass payment ID for delete

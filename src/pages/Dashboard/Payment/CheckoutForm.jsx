@@ -15,14 +15,7 @@ const CheckoutForm = ({ id }) => {
   const axiosSecure = useAxiosSecure();
   const [clientSecret, setClientSecret] = useState("");
   const navigate = useNavigate();
-  // const [biodata, setBiodata] = useState(null);
-  // const [loading, setLoading] = useState(true);
-  // useEffect(() => {
-  //   axiosSecure.get(`/biodatas/${id}`).then((res) => {
-  //     console.log(res.data);
-  //     // setLoading(false);
-  //   });
-  // }, [id, axiosSecure]);
+
   useEffect(() => {
     axiosSecure.post("/create-payment-intent", { price: 5 }).then((res) => {
       setClientSecret(res.data.clientSecret);
@@ -75,6 +68,7 @@ const CheckoutForm = ({ id }) => {
         // Now save the payment in the database
         const payment = {
           email: user.email,
+          name: user.displayName,
           price: 5,
           transactionId: paymentIntent.id,
           date: new Date(),
