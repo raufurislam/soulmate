@@ -32,9 +32,12 @@ const ApprovedPremium = () => {
   };
 
   // Filter users to include only those with the role "requestedPremium"
-  const requestedPremiumUsers = users.filter(
-    (user) => user.role === "requestedPremium"
-  );
+  // const requestedPremiumUsers = users.filter(
+  //   (user) => user.role === "requestedPremium"
+  // );
+  const requestedPremiumUsers = Array.isArray(users)
+    ? users.filter((user) => user.role === "requestedPremium")
+    : [];
 
   return (
     <div className="max-w-screen-xl mx-auto p-5">
