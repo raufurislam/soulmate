@@ -20,6 +20,7 @@ const ViewBiodata = () => {
       .then((res) => res.json())
       .then((data) => {
         setBiodata(data);
+        console.log(data);
       })
       .catch((error) => {
         console.error("Error fetching biodata:", error);
@@ -30,7 +31,6 @@ const ViewBiodata = () => {
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/users/email/${user.email}`);
-      console.log(res.data);
       return res.data;
     },
   });

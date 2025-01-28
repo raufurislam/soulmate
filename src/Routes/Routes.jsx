@@ -16,6 +16,7 @@ import Payment from "../pages/Dashboard/Payment/Payment";
 import ApprovedContactRequest from "../pages/Dashboard/ApprovedContactRequest/ApprovedContactRequest";
 import MyContactRequest from "../pages/Dashboard/MyContactRequest/MyContactRequest";
 import ApprovedPremium from "../pages/Dashboard/ApprovedPremium/ApprovedPremium";
+import GotMarried from "../pages/Dashboard/GotMarried/GotMarried";
 
 export const router = createBrowserRouter([
   {
@@ -90,6 +91,10 @@ export const router = createBrowserRouter([
       {
         path: "payment/:id",
         element: <Payment></Payment>,
+      },
+      {
+        path: "married",
+        element: <GotMarried></GotMarried>,
       },
 
       // Admin Route

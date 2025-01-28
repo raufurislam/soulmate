@@ -14,24 +14,6 @@ const ApprovedPremium = () => {
     },
   });
 
-  // const handlePremiumAccept = async (userId) => {
-  //   try {
-  //     const response = await axiosSecure.patch(`/users/role/${userId}`, {
-  //       role: "premium",
-  //     });
-
-  //     if (response.data.success) {
-  //       alert("User has been successfully upgraded to premium!");
-  //       refetch(); // Refresh data after updating the role
-  //     } else {
-  //       alert(response.data.message || "Something went wrong.");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error approving premium request:", error);
-  //     alert("Failed to approve the request. Please try again later.");
-  //   }
-  // };
-
   const handlePremiumAccept = async (userId) => {
     try {
       const response = await axiosSecure.patch(`/users/role/${userId}`, {
@@ -45,7 +27,7 @@ const ApprovedPremium = () => {
           text: "User has been successfully upgraded to premium!",
           confirmButtonColor: "#3085d6",
         });
-        refetch(); // Refresh data after updating the role
+        refetch();
       } else {
         Swal.fire({
           icon: "error",

@@ -146,6 +146,18 @@ const Dashboard = () => {
               Favourites
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/dashboard/married"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-[#ED5A6A] font-semibold border-b-2 border-[#ED5A6A] pb-1"
+                  : "text-gray-700 hover:text-[#ED5A6A]"
+              }
+            >
+              Got Married
+            </NavLink>
+          </li>
         </>
       )}
 

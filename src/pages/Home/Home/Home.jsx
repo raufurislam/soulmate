@@ -1,6 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import Banner from "../Banner/Banner";
+import SuccessStory from "../SuccessStory/SuccessStory";
 
 const Home = () => {
   return (
@@ -40,12 +41,7 @@ const Home = () => {
       </div>
 
       <div className="my-10 text-center">
-        <h1 className="text-3xl font-semibold">Success Story Section:</h1>
-        <p>
-          Under the Success counter section, You can Show all the marriage
-          success stories that the married couple has posted. You can think of
-          this section as a review section.{" "}
-        </p>
+        <SuccessStory></SuccessStory>
       </div>
     </div>
   );
