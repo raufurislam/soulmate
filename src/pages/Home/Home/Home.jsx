@@ -4,6 +4,7 @@ import Banner from "../Banner/Banner";
 import SuccessStory from "../SuccessStory/SuccessStory";
 import HowItWorksSection from "../HowItWorksSection/HowItWorksSection";
 import SuccessCounterSection from "../SuccessCounterSection/SuccessCounterSection";
+import PremiumMember from "../PremiumMember/PremiumMember";
 
 const Home = () => {
   return (
@@ -12,11 +13,8 @@ const Home = () => {
         <title>Soulmate | Home</title>
       </Helmet>
       <Banner></Banner>
-      <div className="my-10 text-center">
-        <h1 className="text-3xl font-semibold text-center">
-          Six premium member profile
-        </h1>
-        <p></p>
+      <div className="my-10">
+        <PremiumMember></PremiumMember>
       </div>
 
       <div className="my-10">

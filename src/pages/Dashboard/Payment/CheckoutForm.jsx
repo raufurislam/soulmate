@@ -119,7 +119,7 @@ const CheckoutForm = ({ id }) => {
         <label className="block text-sm font-semibold text-gray-700">
           Card Details
         </label>
-        <CardElement
+        {/* <CardElement
           options={{
             style: {
               base: {
@@ -129,9 +129,33 @@ const CheckoutForm = ({ id }) => {
                   color: "#aab7c4",
                 },
                 height: "200px",
+
               },
               invalid: {
                 color: "#9e2146",
+              },
+            },
+          }}
+        /> */}
+        <CardElement
+          options={{
+            style: {
+              base: {
+                fontSize: "16px",
+                color: "#424770",
+                fontFamily: "'Roboto', sans-serif",
+                "::placeholder": {
+                  color: "#aab7c4",
+                },
+                padding: "10px 12px",
+                border: "1px solid #ccc",
+                borderRadius: "4px",
+              },
+              complete: {
+                color: "#4caf50",
+              },
+              invalid: {
+                color: "#f44336",
               },
             },
           }}

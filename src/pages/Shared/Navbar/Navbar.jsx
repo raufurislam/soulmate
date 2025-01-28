@@ -115,6 +115,18 @@ const Navbar = () => {
           </NavLink>
         </li>
       )}
+      <li className="block lg:hidden">
+        {" "}
+        {user && user.email ? (
+          <button onClick={handleLogout} className="text-gray-700">
+            Logout
+          </button>
+        ) : (
+          <NavLink to="/auth/login" className="text-gray-700">
+            Login
+          </NavLink>
+        )}
+      </li>
       {/* {user && user.email && (
         <li>
           <NavLink

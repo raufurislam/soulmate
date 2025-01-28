@@ -58,7 +58,7 @@ const ViewBiodata = () => {
       Swal.fire({
         icon: "error",
         title: "Error!",
-        text: "Something went wrong. Please try again.",
+        text: "Update your profile data to request for Premium membership.",
       });
     }
   };

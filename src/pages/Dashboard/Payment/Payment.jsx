@@ -9,13 +9,15 @@ const Payment = () => {
   const { id } = useParams();
 
   return (
-    <div>
-      <h1>Payment page</h1>
+    <div className="max-w-screen-xl p-5 mx-auto">
+      <div className=" lg:mx-40 p-10 rounded-xl bg-white shadow-lg">
+        <h1>Payment page</h1>
 
-      <div>
-        <Elements stripe={stripePromise}>
-          <CheckoutForm id={id}></CheckoutForm>
-        </Elements>
+        <div>
+          <Elements stripe={stripePromise}>
+            <CheckoutForm id={id}></CheckoutForm>
+          </Elements>
+        </div>
       </div>
     </div>
   );

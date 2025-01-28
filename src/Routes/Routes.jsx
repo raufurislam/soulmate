@@ -165,6 +165,3 @@ export const router = createBrowserRouter([
     element: <h1>ErrorPages</h1>,
   },
 ]);
-
-// https://meet.google.com/mkp-riks-cpw
-// https://meet.google.com/pmb-zgdr-syg
