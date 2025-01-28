@@ -2,6 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import Banner from "../Banner/Banner";
 import SuccessStory from "../SuccessStory/SuccessStory";
+import HowItWorksSection from "../HowItWorksSection/HowItWorksSection";
 
 const Home = () => {
   return (
@@ -17,15 +18,8 @@ const Home = () => {
         <p></p>
       </div>
 
-      <div className="my-10 text-center">
-        <h1 className="text-3xl font-semibold text-center">
-          How it works section:
-        </h1>
-        <p>
-          Under the premium membership card, Here you will design how this
-          website works. You can do it in your own way. [Visit any matrimony
-          website for ideas.]
-        </p>
+      <div className="my-10">
+        <HowItWorksSection></HowItWorksSection>
       </div>
 
       <div className="my-10 text-center">
