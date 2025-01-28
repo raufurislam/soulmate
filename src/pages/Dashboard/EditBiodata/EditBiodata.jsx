@@ -27,7 +27,9 @@ const EditBiodata = () => {
   const [birthDate, setBirthDate] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/biodatas/email/${user.email}`)
+    fetch(
+      `https://assignment-12-server-raufur-web-10-0934.vercel.app/biodatas/email/${user.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data) {
@@ -52,14 +54,14 @@ const EditBiodata = () => {
     data.birthDate = birthDate;
 
     const response = await fetch(
-      `http://localhost:5000/biodatas/email/${user.email}`
+      `https://assignment-12-server-raufur-web-10-0934.vercel.app/biodatas/email/${user.email}`
     );
 
     if (response.ok) {
       // User already has a biodata, perform PATCH request
       const userBiodata = await response.json();
       const patchResponse = await fetch(
-        `http://localhost:5000/biodata/${userBiodata._id}`,
+        `https://assignment-12-server-raufur-web-10-0934.vercel.app/biodata/${userBiodata._id}`,
         {
           method: "PATCH",
           headers: {
@@ -76,13 +78,16 @@ const EditBiodata = () => {
       }
     } else {
       // No existing biodata, perform POST request to create new
-      const postResponse = await fetch("http://localhost:5000/biodatas", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const postResponse = await fetch(
+        "https://assignment-12-server-raufur-web-10-0934.vercel.app/biodatas",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
 
       if (postResponse.ok) {
         toast.success("Biodata saved successfully!");

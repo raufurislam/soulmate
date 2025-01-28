@@ -15,7 +15,9 @@ const DetailsPage = () => {
   const [favourite, refetch] = useFavourite();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/biodatas/${id}`)
+    fetch(
+      `https://assignment-12-server-raufur-web-10-0934.vercel.app/biodatas/${id}`
+    )
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch biodata.");
@@ -26,7 +28,9 @@ const DetailsPage = () => {
         setBiodata(data);
 
         // Fetch similar biodata
-        fetch(`http://localhost:5000/biodatas?biodataType=${data.biodataType}`)
+        fetch(
+          `https://assignment-12-server-raufur-web-10-0934.vercel.app/biodatas?biodataType=${data.biodataType}`
+        )
           .then((res) => res.json())
           .then((similarData) =>
             setSimilarBiodata(similarData.filter((item) => item._id !== id))

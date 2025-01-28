@@ -16,7 +16,9 @@ const ViewBiodata = () => {
 
   useEffect(() => {
     // Fetch the user's biodata
-    fetch(`http://localhost:5000/biodatas/email/${user.email}`)
+    fetch(
+      `https://assignment-12-server-raufur-web-10-0934.vercel.app/biodatas/email/${user.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setBiodata(data);

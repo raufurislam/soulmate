@@ -17,6 +17,7 @@ import ApprovedContactRequest from "../pages/Dashboard/ApprovedContactRequest/Ap
 import MyContactRequest from "../pages/Dashboard/MyContactRequest/MyContactRequest";
 import ApprovedPremium from "../pages/Dashboard/ApprovedPremium/ApprovedPremium";
 import GotMarried from "../pages/Dashboard/GotMarried/GotMarried";
+import AdminDashboard from "../pages/Dashboard/AdminDashboard/AdminDashboard";
 
 export const router = createBrowserRouter([
   {
@@ -100,7 +101,7 @@ export const router = createBrowserRouter([
       // Admin Route
       {
         path: "adminDashboard",
-        element: <h1>Admin Dashboard</h1>,
+        element: <AdminDashboard></AdminDashboard>,
       },
       {
         path: "manage",

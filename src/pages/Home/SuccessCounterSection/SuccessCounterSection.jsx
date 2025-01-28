@@ -12,7 +12,8 @@ const SuccessCounterSection = () => {
       return res.data;
     },
   });
-  // Fetch marrige
+
+  // Fetch marriages
   const { data: marriages = [] } = useQuery({
     queryKey: ["marriage"],
     queryFn: async () => {
@@ -21,14 +22,14 @@ const SuccessCounterSection = () => {
     },
   });
 
-  // Count female and male biodatas
-  const femaleBiodatasCount = biodatas.filter(
-    (biodata) => biodata.biodataType === "Female"
-  ).length;
+  // Check if biodatas is an array before applying filter
+  const femaleBiodatasCount = Array.isArray(biodatas)
+    ? biodatas.filter((biodata) => biodata.biodataType === "Female").length
+    : 0;
 
-  const maleBiodatasCount = biodatas.filter(
-    (biodata) => biodata.biodataType === "Male"
-  ).length;
+  const maleBiodatasCount = Array.isArray(biodatas)
+    ? biodatas.filter((biodata) => biodata.biodataType === "Male").length
+    : 0;
 
   return (
     <div className="max-w-screen-xl p-5 mx-auto">
@@ -41,9 +42,10 @@ const SuccessCounterSection = () => {
         <div className="bg-green-100 p-5 text-center rounded-lg shadow-md">
           <h2 className="text-xl font-bold text-green-600">Total Biodatas</h2>
           <p className="text-3xl font-semibold text-green-800">
-            {biodatas.length}
+            {Array.isArray(biodatas) ? biodatas.length : 0}
           </p>
         </div>
+
         {/* Female Biodatas Count */}
         <div className="bg-blue-100 p-5 text-center rounded-lg shadow-md">
           <h2 className="text-xl font-bold text-blue-600">Girls</h2>
@@ -51,6 +53,7 @@ const SuccessCounterSection = () => {
             {femaleBiodatasCount}
           </p>
         </div>
+
         {/* Male Biodatas Count */}
         <div className="bg-yellow-100 p-5 text-center rounded-lg shadow-md">
           <h2 className="text-xl font-bold text-yellow-600">Boys</h2>
@@ -58,11 +61,12 @@ const SuccessCounterSection = () => {
             {maleBiodatasCount}
           </p>
         </div>
+
         {/* Placeholder */}
         <div className="bg-red-100 p-5 text-center rounded-lg shadow-md">
           <h2 className="text-xl font-bold text-red-600">Marriages</h2>
           <p className="text-3xl font-semibold text-red-800">
-            {marriages.length}
+            {Array.isArray(marriages) ? marriages.length : 0}
           </p>
         </div>
       </div>

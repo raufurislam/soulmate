@@ -16,9 +16,12 @@ const MyFavouritesPage = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/favourites/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://assignment-12-server-raufur-web-10-0934.vercel.app/favourites/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
