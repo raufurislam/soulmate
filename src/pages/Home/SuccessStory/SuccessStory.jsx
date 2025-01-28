@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import ReactStars from "react-rating-stars-component";
+import StarRatings from "react-star-ratings";
 
 const SuccessStory = () => {
   const axiosPublic = useAxiosPublic();
@@ -14,7 +14,6 @@ const SuccessStory = () => {
     queryKey: ["marriage"],
     queryFn: async () => {
       const res = await axiosPublic.get("marriage");
-      console.log(res.data);
       return res.data;
     },
   });
@@ -29,23 +28,9 @@ const SuccessStory = () => {
       {/* Swiper for dynamic slides */}
       <Swiper
         spaceBetween={50}
-        slidesPerView={1}
+        slidesPerView={1} // Show only one story per pagination
         navigation
         pagination={{ clickable: true }}
-        breakpoints={{
-          640: {
-            slidesPerView: 1,
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 2,
-            spaceBetween: 30,
-          },
-          1024: {
-            slidesPerView: 3,
-            spaceBetween: 40,
-          },
-        }}
       >
         {marriages.map((marriage) => (
           <SwiperSlide key={marriage._id}>
@@ -58,19 +43,21 @@ const SuccessStory = () => {
                   className="w-full h-auto rounded-lg"
                 />
               </div>
-              <div className="text-left w-full md:w-1/2">
-                <h2 className="text-2xl font-bold">
-                  Marriage Date:{" "}
+              <div className="md:text-left text-center w-full md:w-1/2">
+                <div>
+                  <p className="text-gray-500">Marriage Date:</p>
+                </div>
+                <h2 className="text-lg font-bold">
                   {new Date(marriage.marriageDate).toLocaleDateString()}
                 </h2>
                 {/* Rating Component */}
-                <div className="my-4">
-                  <ReactStars
-                    count={5}
-                    value={marriage.reviewStar}
-                    edit={false}
-                    size={24}
-                    activeColor="#ffd700"
+                <div className="my-4 flex justify-center">
+                  <StarRatings
+                    rating={marriage.reviewStar || 0} // Fallback to 0 if no rating
+                    starRatedColor="gold"
+                    numberOfStars={5}
+                    starDimension="24px"
+                    starSpacing="2px"
                   />
                 </div>
                 {/* Success Story */}
