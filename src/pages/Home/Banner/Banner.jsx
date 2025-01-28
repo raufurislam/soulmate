@@ -5,7 +5,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "animate.css";
-import { Link } from "react-router-dom";
 
 const Banner = () => {
   const [slides] = useState([
@@ -41,10 +40,6 @@ const Banner = () => {
 
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // https://i.ibb.co.com/NCRm6TM/Assignment-banner-09.png
-  // https://i.ibb.co.com/zmV2vRM/Assignment-banner-10.png
-  // https://i.ibb.co.com/P4RspZC/Assignment-banner-11.png
-  // https://i.ibb.co.com/6HhXpN2/Assignment-banner-12.png
   return (
     <div className="max-w-screen-xl mx-auto pt-4 lg:px-2 px-4 bg-pink-50">
       <div className="rounded-lg bg-base-200 lg:px-12 px-4 md:px-7 py-5">
