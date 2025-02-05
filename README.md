@@ -46,57 +46,29 @@
 
 ## Dependencies
 
-### Project Dependencies:
+### Frontend:
 
-```json
-"dependencies": {
-    "@stripe/react-stripe-js": "^3.1.1",
-    "@stripe/stripe-js": "^5.5.0",
-    "@tanstack/react-query": "^5.64.2",
-    "animate.css": "^4.1.1",
-    "axios": "^1.7.9",
-    "firebase": "^11.1.0",
-    "flowbite": "^2.5.2",
-    "flowbite-react": "^0.10.2",
-    "react": "^18.3.1",
-    "react-datepicker": "^7.6.0",
-    "react-dom": "^18.3.1",
-    "react-helmet-async": "^2.0.5",
-    "react-hook-form": "^7.54.2",
-    "react-icons": "^5.4.0",
-    "react-modal": "^3.16.3",
-    "react-rating": "^2.0.5",
-    "react-rating-stars-component": "^2.2.0",
-    "react-responsive-modal": "^6.4.2",
-    "react-router-dom": "^7.1.1",
-    "react-star-ratings": "^2.3.0",
-    "react-toastify": "^11.0.3",
-    "sweetalert2": "^11.15.10",
-    "swiper": "^11.2.1"
-}
-```
+- **React**: A JavaScript library for building user interfaces.
+- **Tailwind CSS**: A utility-first CSS framework for designing responsive layouts.
+- **DaisyUI**: A Tailwind CSS plugin for UI components.
+- **Framer Motion**: A library for animations and interactive transitions.
+- **React Router DOM**: A routing library for seamless navigation between pages.
+- **React Icons**: A library to include icons in your React app.
+- **SweetAlert2**: For elegant and customizable alert dialogs.
+- **Axios**: A promise-based HTTP client for making requests.
 
-````
+### Backend:
 
-### Development Dependencies:
+- **Node.js**: JavaScript runtime environment.
+- **Express.js**: Web framework for Node.js to build server-side applications.
+- **MongoDB**: A NoSQL database for storing application data.
+- **Firebase Authentication**: For user authentication (email/password and third-party providers like Google and GitHub).
 
-```json
-"devDependencies": {
-    "@eslint/js": "^9.17.0",
-    "@types/react": "^18.3.18",
-    "@types/react-dom": "^18.3.5",
-    "@vitejs/plugin-react": "^4.3.4",
-    "autoprefixer": "^10.4.20",
-    "eslint": "^9.17.0",
-    "eslint-plugin-react": "^7.37.2",
-    "eslint-plugin-react-hooks": "^5.0.0",
-    "eslint-plugin-react-refresh": "^0.4.16",
-    "globals": "^15.14.0",
-    "postcss": "^8.5.1",
-    "tailwindcss": "^3.4.17",
-    "vite": "^6.0.5"
-}
-```
+### Development Tools:
+
+- **Dotenv**: Loads environment variables from a `.env` file.
+- **Cors**: A package to handle cross-origin resource sharing.
+- **Body-Parser**: Middleware to parse incoming request bodies.
 
 ---
 
@@ -157,4 +129,7 @@ Thank you for exploring **Soulmate**! We hope you have a great experience with i
 
 You can now save this content into a `README.md` file. This format is ready to be used directly on GitHub or any platform that supports Markdown formatting. Let me know if you'd like further adjustments!
 ```
-````
+
+```
+
+```
