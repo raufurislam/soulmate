@@ -1,3 +1,7 @@
+<div align="center">
+  <img height="auto" width="100%" src="https://i.ibb.co.com/G35yrp0W/Screenshot-204.png" />
+</div>
+
 # Soulmate
 
 ## Website Overview
@@ -33,6 +37,25 @@ https://soulmate-raufur-a12.web.app/
 8. **Robust API Integration**: Easily integrate third-party services with our well-documented API.
 9. **Customizable Themes**: Choose from a variety of themes to personalize the look and feel of your experience.
 10. **24/7 Support**: Dedicated support team available round the clock to assist with any issues or queries.
+
+---
+
+## Technologies I Have Used
+
+### Frontend:
+
+- HTML5, CSS3, Tailwind CSS
+- JavaScript, React.js, Next.js
+
+### Backend:
+
+- Node.js, Express.js
+- Firebase, MongoDB
+
+### Tools & Design:
+
+- Illustrator
+- Figma
 
 ---
 

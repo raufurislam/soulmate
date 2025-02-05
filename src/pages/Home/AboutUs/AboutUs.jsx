@@ -1,8 +1,15 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
+import useAuth from "../../../hooks/useAuth";
 
 const AboutUs = () => {
+  const { user } = useAuth();
+
   return (
     <div className="bg-gray-50">
+      <Helmet>
+        <title>Soulmate | About Us</title>
+      </Helmet>
       {/* Hero Section */}
       <section
         className="relative bg-cover bg-center h-96 bg-pink-600"
@@ -44,16 +51,16 @@ const AboutUs = () => {
             {/* Team Member 1 */}
             <div className="bg-gray-100 p-6 rounded-lg shadow-md">
               <img
-                src="team-member1.jpg"
+                src="https://i.ibb.co.com/RNPS0xG/IMG-20240107-215349-956.jpg"
                 alt="Team Member 1"
                 className="w-24 h-24 mx-auto rounded-full object-cover"
               />
               <h3 className="text-2xl font-semibold text-center text-gray-800 mt-4">
-                John Doe
+                Raufur Islam
               </h3>
-              <p className="text-center text-gray-600 mt-2">Co-Founder</p>
+              <p className="text-center text-gray-600 mt-2">Founder</p>
               <p className="mt-4 text-gray-600 text-center">
-                John is passionate about fostering connections and helping
+                Raufur is passionate about fostering connections and helping
                 individuals find their true soulmate. With over a decade of
                 experience in relationship counseling, he believes in the power
                 of love and understanding.
@@ -62,7 +69,7 @@ const AboutUs = () => {
             {/* Team Member 2 */}
             <div className="bg-gray-100 p-6 rounded-lg shadow-md">
               <img
-                src="team-member2.jpg"
+                src="https://t4.ftcdn.net/jpg/09/35/84/03/360_F_935840397_7miN8MVzz8BMEKPsOdqPKd0JTHZygNfv.jpg"
                 alt="Team Member 2"
                 className="w-24 h-24 mx-auto rounded-full object-cover"
               />
@@ -80,9 +87,9 @@ const AboutUs = () => {
             {/* Team Member 3 */}
             <div className="bg-gray-100 p-6 rounded-lg shadow-md">
               <img
-                src="team-member3.jpg"
+                src="https://tiermaker.com/images/chart/chart/male-animated-cartoon-characters-912009/transparent-hiro-big-hero-6-37747465-427-378pngcrdownload.png"
                 alt="Team Member 3"
-                className="w-24 h-24 mx-auto rounded-full object-cover"
+                className="w-24 h-24 mx-auto bg-blue-300 rounded-full object-cover"
               />
               <h3 className="text-2xl font-semibold text-center text-gray-800 mt-4">
                 Emily Johnson
@@ -116,24 +123,26 @@ const AboutUs = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 bg-blue-600 text-white text-center">
-        <h2 className="text-3xl font-semibold">
-          Join Us on the Journey to Love
-        </h2>
-        <p className="mt-4 text-lg max-w-2xl mx-auto">
-          Whether you're looking for your soulmate or simply want to be a part
-          of a supportive community, we invite you to join us today. Together,
-          we can help you find your perfect match.
-        </p>
-        <div className="mt-6">
-          <a
-            href="/signup"
-            className="px-6 py-3 bg-yellow-500 text-gray-800 font-semibold rounded-full hover:bg-yellow-400"
-          >
-            Get Started
-          </a>
-        </div>
-      </section>
+      {!user && (
+        <section className="py-16 bg-blue-600 text-white text-center">
+          <h2 className="text-3xl font-semibold">
+            Join Us on the Journey to Love
+          </h2>
+          <p className="mt-4 text-lg max-w-2xl mx-auto">
+            Whether you're looking for your soulmate or simply want to be a part
+            of a supportive community, we invite you to join us today. Together,
+            we can help you find your perfect match.
+          </p>
+          <div className="mt-6">
+            <a
+              href="/auth/signUp"
+              className="px-6 py-3 bg-yellow-500 text-gray-800 font-semibold rounded-full hover:bg-yellow-400"
+            >
+              Get Started
+            </a>
+          </div>
+        </section>
+      )}
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const Biodatas = () => {
   const [biodatas, setBiodatas] = useState([]);
@@ -57,6 +58,9 @@ const Biodatas = () => {
 
   return (
     <div className="max-w-screen-xl p-4 mx-auto">
+      <Helmet>
+        <title>Soulmate | All Biodata</title>
+      </Helmet>
       <div className="lg:flex lg:gap-4">
         {/* Drawer Toggle Button for sm/md */}
         <div className="lg:hidden mb-4">
