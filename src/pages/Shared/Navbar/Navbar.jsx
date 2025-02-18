@@ -232,10 +232,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProviders";
-import { FiMenu } from "react-icons/fi";
 import useAdmin from "../../../hooks/useAdmin";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import Swal from "sweetalert2";
+import { FaSun, FaMoon } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -243,6 +243,20 @@ const Navbar = () => {
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
   const location = useLocation();
   const [isAdmin] = useAdmin();
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || "light";
+    setTheme(savedTheme);
+    document.documentElement.setAttribute("data-theme", savedTheme);
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    document.documentElement.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+  };
 
   // Close dropdowns on route change
   useEffect(() => {
@@ -443,11 +457,11 @@ const Navbar = () => {
           </div>
           <NavLink to="/" className="btn btn-ghost text-xl px-0">
             <img
-              src="https://i.ibb.co/5Gc9QGB/foundify-03.png"
+              src="https://img.icons8.com/?size=40&id=33124&format=png"
               alt="Foundify Logo"
               className="w-6 object-cover"
             />
-            Foundify
+            Soulmate
           </NavLink>
         </div>
 
@@ -500,6 +514,17 @@ const Navbar = () => {
               Login
             </Link>
           )}
+          {/* <div className="w-12 h-12 flex items-center justify-center ml-4 bg-primary rounded-full">
+            1
+          </div> */}
+          {/* Toggle theme */}
+          <button
+            onClick={toggleTheme}
+            className="btn btn-ghost rounded-full px-3 mr-3 border text-xl flex items-center justify-center"
+            aria-label="Toggle Theme"
+          >
+            {theme === "light" ? <FaMoon /> : <FaSun />}
+          </button>
         </div>
       </div>
     </div>
