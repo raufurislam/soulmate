@@ -32,10 +32,16 @@ const SuccessCounterSection = () => {
     : 0;
 
   return (
-    <div className="max-w-screen-xl p-5 mx-auto">
-      <h1 className="md:text-3xl text-2xl font-bold text-center mb-8">
-        Success Counter Section
-      </h1>
+    <div className="max-w-screen-xl mx-auto pt-4 lg:px-2 px-4">
+      {/* Heading */}
+      <div>
+        <h1 className="lg:text-3xl md:text-2xl text-lg font-bold text-center text-text1 md:mb-3 mb-2">
+          Our Growing Matrimony Community
+        </h1>
+        <p className="text-center w-4/5 mx-auto text-text2 md:text-xl mb-8">
+          Discover the strength of our network—where love finds its way!
+        </p>
+      </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* Total Biodatas */}

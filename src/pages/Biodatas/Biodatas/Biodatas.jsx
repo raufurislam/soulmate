@@ -17,7 +17,7 @@ const Biodatas = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const axiosPublic = useAxiosPublic();
 
-  const itemsPerPage = 6;
+  const itemsPerPage = 12;
 
   const fetchBiodatas = () => {
     const query = new URLSearchParams(filters).toString();
@@ -57,137 +57,63 @@ const Biodatas = () => {
   };
 
   return (
-    <div className="max-w-screen-xl p-4 mx-auto">
+    <div className="max-w-screen-xl mx-auto pt-4 lg:px-2 px-4">
       <Helmet>
         <title>Soulmate | All Biodata</title>
       </Helmet>
-      <div className="lg:flex lg:gap-4">
-        {/* Drawer Toggle Button for sm/md */}
-        <div className="lg:hidden mb-4">
-          <button
-            onClick={() => setIsDrawerOpen(true)}
-            className="bg-red-500 text-white p-2 rounded font-bold w-full"
-          >
-            Open Filters
-          </button>
-        </div>
 
-        {/* Drawer for sm/md */}
-        {isDrawerOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-end">
-            <div className="w-3/4 sm:w-1/2 bg-red-500 p-4 h-full overflow-y-auto">
-              <h3 className="text-white font-semibold">Filters</h3>
-              <div className="mt-4">
-                <label className="block text-white">Min Age</label>
-                <input
-                  type="number"
-                  name="minAge"
-                  value={filters.minAge}
-                  onChange={handleFilterChange}
-                  className="w-full mt-2 p-2 rounded"
-                />
-              </div>
-              <div className="mt-4">
-                <label className="block text-white">Max Age</label>
-                <input
-                  type="number"
-                  name="maxAge"
-                  value={filters.maxAge}
-                  onChange={handleFilterChange}
-                  className="w-full mt-2 p-2 rounded"
-                />
-              </div>
-              <div className="mt-4">
-                <label className="block text-white">Biodata Type</label>
-                <select
-                  name="biodataType"
-                  value={filters.biodataType}
-                  onChange={handleFilterChange}
-                  className="w-full mt-2 p-2 rounded"
-                >
-                  <option value="">All</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
-              </div>
-              <div className="mt-4">
-                <label className="block text-white">Division</label>
-                <select
-                  name="division"
-                  value={filters.division}
-                  onChange={handleFilterChange}
-                  className="w-full mt-2 p-2 rounded"
-                >
-                  <option value="">All</option>
-                  <option value="Dhaka">Dhaka</option>
-                  <option value="Chittagong">Chittagong</option>
-                  <option value="Sylhet">Sylhet</option>
-                  <option value="Khulna">Khulna</option>
-                  <option value="Rajshahi">Rajshahi</option>
-                  <option value="Barisal">Barisal</option>
-                  <option value="Rangpur">Rangpur</option>
-                  <option value="Mymensingh">Mymensingh</option>
-                </select>
-              </div>
-              <button
-                onClick={handleApplyFilters}
-                className="w-full mt-6 bg-white text-red-500 p-2 rounded font-bold"
-              >
-                Apply Filters
-              </button>
-              <button
-                onClick={() => setIsDrawerOpen(false)}
-                className="w-full mt-2 bg-white text-gray-500 p-2 rounded font-bold"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* Filters Section for lg */}
-        <div className="hidden lg:block lg:w-1/4 bg-red-500 p-4">
-          <h3 className="text-white font-semibold">Filters</h3>
-          <div className="mt-4">
-            <label className="block text-white">Min Age</label>
+      {/* Filters Section at the top for lg*/}
+      <div className="bg-primary hidden lg:block p-4 rounded-xl mb-6">
+        <h2 className="text-center font-bold text-xl mb-3 text-white">
+          Filter
+        </h2>
+        <div className="flex justify-between lg:gap-6 gap-4">
+          {/* Min Age */}
+          <div className="flex flex-col w-full sm:w-1/4">
+            <label className="text-white font-medium">Min Age</label>
             <input
               type="number"
               name="minAge"
               value={filters.minAge}
               onChange={handleFilterChange}
-              className="w-full mt-2 p-2 rounded"
+              className="w-full mt-2 p-2 bg-neutral border-none rounded-lg"
+              placeholder="Min Age"
             />
           </div>
-          <div className="mt-4">
-            <label className="block text-white">Max Age</label>
+          {/* Max Age */}
+          <div className="flex flex-col w-full sm:w-1/4">
+            <label className="text-white font-medium">Max Age</label>
             <input
               type="number"
               name="maxAge"
               value={filters.maxAge}
               onChange={handleFilterChange}
-              className="w-full mt-2 p-2 rounded"
+              className="w-full mt-2 p-2 bg-neutral border-none rounded-lg"
+              placeholder="Max Age"
             />
           </div>
-          <div className="mt-4">
-            <label className="block text-white">Biodata Type</label>
+          {/* Biodata Type */}
+          <div className="flex flex-col w-full sm:w-1/4">
+            <label className="text-white font-medium">Biodata Type</label>
             <select
               name="biodataType"
               value={filters.biodataType}
               onChange={handleFilterChange}
-              className="w-full mt-2 p-2 rounded"
+              className="w-full mt-2 p-2 bg-neutral border-none rounded-lg"
             >
               <option value="">All</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
             </select>
           </div>
-          <div className="mt-4">
-            <label className="block text-white">Division</label>
+          {/* Division */}
+          <div className="flex flex-col w-full sm:w-1/4">
+            <label className="text-white font-medium">Division</label>
             <select
               name="division"
               value={filters.division}
               onChange={handleFilterChange}
-              className="w-full mt-2 p-2 rounded"
+              className="w-full mt-2 p-2 bg-neutral border-none rounded-lg"
             >
               <option value="">All</option>
               <option value="Dhaka">Dhaka</option>
@@ -200,60 +126,168 @@ const Biodatas = () => {
               <option value="Mymensingh">Mymensingh</option>
             </select>
           </div>
-          <button
-            onClick={handleApplyFilters}
-            className="w-full mt-6 bg-white text-red-500 p-2 rounded font-bold"
-          >
-            Apply Filters
-          </button>
+          {/* Apply Filters Button
+          <div className="flex justify-center sm:justify-start mt-4 sm:mt-0 w-full sm:w-auto">
+            <button
+              onClick={handleApplyFilters}
+              className="bg-white text-red-500 py-2 px-6 rounded-lg font-semibold w-full sm:w-auto"
+            >
+              Apply Filters
+            </button>
+          </div> */}
         </div>
+      </div>
 
-        {/* Biodata Cards Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 w-full">
-          {filteredBiodatas.length > 0 ? (
-            filteredBiodatas.map((biodata) => (
-              <div
-                key={biodata._id}
-                className="bg-white rounded-xl p-4 shadow-md"
+      {/* Drawer Toggle Button for sm/md */}
+      <div className="lg:hidden mb-4">
+        <button
+          onClick={() => setIsDrawerOpen(true)}
+          className="bg-red-500 text-white p-2 rounded font-bold w-full"
+        >
+          Open Filters
+        </button>
+      </div>
+
+      {/* Drawer for sm/md */}
+      {isDrawerOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-end">
+          <div className="w-3/4 sm:w-1/2 bg-red-500 p-4 h-full overflow-y-auto">
+            <h3 className="text-white font-semibold">Filters</h3>
+            <div className="mt-4">
+              <label className="block text-white">Min Age</label>
+              <input
+                type="number"
+                name="minAge"
+                value={filters.minAge}
+                onChange={handleFilterChange}
+                className="w-full mt-2 p-2 rounded"
+              />
+            </div>
+            <div className="mt-4">
+              <label className="block text-white">Max Age</label>
+              <input
+                type="number"
+                name="maxAge"
+                value={filters.maxAge}
+                onChange={handleFilterChange}
+                className="w-full mt-2 p-2 rounded"
+              />
+            </div>
+            <div className="mt-4">
+              <label className="block text-white">Biodata Type</label>
+              <select
+                name="biodataType"
+                value={filters.biodataType}
+                onChange={handleFilterChange}
+                className="w-full mt-2 p-2 rounded"
               >
-                <img
-                  className="w-24 h-24 object-cover rounded-full mx-auto"
-                  src={
-                    biodata.photoURL ||
-                    "https://static.vecteezy.com/system/resources/previews/007/407/994/non_2x/monochrome-icon-people-icon-design-user-icon-in-flat-style-vector.jpg"
-                  }
-                  alt={biodata.name || "No Name"}
-                />
-                <h1 className="text-xl font-semibold text-center mt-2">
-                  {biodata.name || "Name N/A"}
-                </h1>
-                <h2 className="text-lg text-center">
-                  {biodata.occupation || "Occupation N/A"}
-                </h2>
-                <div className="mt-4">
-                  <p>Id No: {biodata.biodataId || "N/A"}</p>
-                  <p>Gender: {biodata.biodataType || "N/A"}</p>
-                  <p>Age: {biodata.age || "N/A"}</p>
-                  <p>
-                    Permanent Division: {biodata.permanentDivision || "N/A"}
-                  </p>
-                </div>
-                <div className="flex justify-center mt-4">
-                  <Link
-                    to={`/biodatas/${biodata._id}`}
-                    className="text-white bg-[#ED5A6A] hover:bg-[#d64a5b] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5"
-                  >
-                    View Profile
-                  </Link>
-                </div>
-              </div>
-            ))
-          ) : (
-            <p className="col-span-3 text-center text-gray-500">
-              No biodatas found.
-            </p>
-          )}
+                <option value="">All</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+            <div className="mt-4">
+              <label className="block text-white">Division</label>
+              <select
+                name="division"
+                value={filters.division}
+                onChange={handleFilterChange}
+                className="w-full mt-2 p-2 rounded"
+              >
+                <option value="">All</option>
+                <option value="Dhaka">Dhaka</option>
+                <option value="Chittagong">Chittagong</option>
+                <option value="Sylhet">Sylhet</option>
+                <option value="Khulna">Khulna</option>
+                <option value="Rajshahi">Rajshahi</option>
+                <option value="Barisal">Barisal</option>
+                <option value="Rangpur">Rangpur</option>
+                <option value="Mymensingh">Mymensingh</option>
+              </select>
+            </div>
+            <button
+              onClick={handleApplyFilters}
+              className="w-full mt-6 bg-white text-red-500 p-2 rounded font-bold"
+            >
+              Apply Filters
+            </button>
+            <button
+              onClick={() => setIsDrawerOpen(false)}
+              className="w-full mt-2 bg-white text-gray-500 p-2 rounded font-bold"
+            >
+              Close
+            </button>
+          </div>
         </div>
+      )}
+
+      {/* Biodata Cards Section */}
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {filteredBiodatas.length > 0 ? (
+          filteredBiodatas.map((biodata) => (
+            <div key={biodata._id} className="bg-neutral rounded-xl shadow-md">
+              <img
+                className="w-full h-48 object-cover rounded-lg"
+                src={
+                  biodata.photoURL ||
+                  "https://static.vecteezy.com/system/resources/previews/007/407/994/non_2x/monochrome-icon-people-icon-design-user-icon-in-flat-style-vector.jpg"
+                }
+                alt={biodata.name || "No Name"}
+              />
+              <div className="p-4">
+                {/* ----------------------------- */}
+                <div className="flex justify-between">
+                  <h2 className="md:text-lg font-bold text-text1">
+                    {biodata.name}
+                  </h2>
+                  <h3
+                    className={`font-medium px-3 rounded-lg ${
+                      biodata.biodataType === "Male"
+                        ? "bg-green-200 text-text3 border border-green-500 "
+                        : "bg-pink-200 text-text3 border border-pink-500 "
+                    }`}
+                  >
+                    {biodata.biodataType}
+                  </h3>
+                </div>
+                {/* ----------------------------- */}
+                <p className="text-text2 mt-2">
+                  Biodata ID:{" "}
+                  <span className="font-semibold text-text1">
+                    {biodata.biodataId}
+                  </span>
+                </p>
+                <p className="text-text2 mt-1">
+                  Age:{" "}
+                  <span className="text-text1 font-semibold">
+                    {biodata.age}
+                  </span>
+                </p>
+
+                {/* Parmanet division */}
+                <p className="text-text2 mt-1">
+                  Location:{" "}
+                  <span className="text-text1 font-semibold">
+                    {biodata.permanentDivision}
+                  </span>
+                </p>
+
+                <Link
+                  to={`/biodatas/${biodata._id}`}
+                  className="mt-4 bg-primary text-white py-2 px-4 rounded-lg hover:bg-[#E32636] inline-block"
+                >
+                  View Profile
+                </Link>
+
+                {/* ----------------------------- */}
+              </div>
+            </div>
+          ))
+        ) : (
+          <p className="col-span-3 text-center text-gray-500">
+            No biodatas found.
+          </p>
+        )}
       </div>
 
       {/* Pagination */}
@@ -264,9 +298,9 @@ const Biodatas = () => {
               <button
                 onClick={() => handlePagination(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                className="flex items-center justify-center px-3 h-8 leading-tight text-text2 bg-neutral border border-gray-300 rounded-s-lg hover:bg-base-100 hover:text-primary"
               >
-                Previous
+                Prev
               </button>
             </li>
             {[...Array(totalPages).keys()].map((pageNumber) => (
@@ -275,9 +309,9 @@ const Biodatas = () => {
                   onClick={() => handlePagination(pageNumber + 1)}
                   className={`flex items-center justify-center px-3 h-8 leading-tight ${
                     currentPage === pageNumber + 1
-                      ? "text-blue-600 bg-blue-50"
-                      : "text-gray-500 bg-white"
-                  } border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
+                      ? "text-primary bg-neutral"
+                      : "text-text2 bg-neutral"
+                  } border border-gray-300 hover:bg-base-100 hover:text-primary`}
                 >
                   {pageNumber + 1}
                 </button>
@@ -287,7 +321,7 @@ const Biodatas = () => {
               <button
                 onClick={() => handlePagination(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                className="flex items-center justify-center px-3 h-8 leading-tight text-text2 bg-neutral border border-gray-300 rounded-e-lg hover:bg-base-100 hover:text-primary"
               >
                 Next
               </button>

@@ -1,90 +1,3 @@
-// import React from "react";
-// import { useQuery } from "@tanstack/react-query";
-// import { Link, useNavigate } from "react-router-dom";
-// import useAxiosPublic from "../../../hooks/useAxiosPublic";
-
-// const PremiumMember = () => {
-//   const axiosSecure = useAxiosPublic();
-//   const navigate = useNavigate();
-
-//   // Fetch users
-//   const { data: users = [] } = useQuery({
-//     queryKey: ["users"],
-//     queryFn: async () => {
-//       const res = await axiosSecure.get("/users");
-//       return res.data;
-//     },
-//   });
-
-//   // Fetch biodatas
-//   const { data: biodatas = [] } = useQuery({
-//     queryKey: ["biodatas"],
-//     queryFn: async () => {
-//       const res = await axiosSecure.get("/biodatas");
-//       return res.data;
-//     },
-//   });
-
-//   // Filter premium users and find their biodata
-//   const premiumMembers =
-//     Array.isArray(users) && Array.isArray(biodatas)
-//       ? users
-//           .filter((user) => user.role === "premium")
-//           .map((premiumUser) => {
-//             const biodata = biodatas.find(
-//               (data) => data.biodataId === premiumUser.biodataId
-//             );
-//             return biodata ? { ...premiumUser, ...biodata } : null;
-//           })
-//           .filter(Boolean)
-//       : [];
-
-//   return (
-//     <div className="max-w-screen-xl p-5 mx-auto">
-//       <h1 className="lg:text-3xl text-2xl font-bold text-center mb-8">
-//         Premium Members
-//       </h1>
-//       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-//         {premiumMembers.map((member) => (
-//           <div
-//             key={member.biodataId}
-//             className="bg-white shadow-lg rounded-lg p-5"
-//           >
-//             <img
-//               src={member.photoURL}
-//               alt={member.name}
-//               className="w-full h-48 object-cover rounded-lg mb-4"
-//             />
-//             <h2 className="text-xl font-bold text-gray-800">
-//               {member.name} ({member.biodataType})
-//             </h2>
-//             <p className="text-gray-600">
-//               <strong>Biodata ID:</strong> {member.biodataId}
-//             </p>
-//             <p className="text-gray-600">
-//               <strong>Permanent Division:</strong> {member.permanentDivision}
-//             </p>
-//             <p className="text-gray-600">
-//               <strong>Age:</strong> {member.age}
-//             </p>
-//             <p className="text-gray-600">
-//               <strong>Occupation:</strong> {member.occupation}
-//             </p>
-//             <Link
-//               to={`/biodatas/${member._id}`}
-//               className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
-//             >
-//               View Profile
-//             </Link>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default PremiumMember;
-
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
@@ -138,19 +51,26 @@ const PremiumMember = () => {
   });
 
   // Limit to 6 cards
-  const displayedMembers = sortedMembers.slice(0, 6);
+  const displayedMembers = sortedMembers.slice(0, 8);
 
   return (
-    <div className="max-w-screen-xl p-5 mx-auto">
-      <h1 className="lg:text-3xl text-2xl font-bold text-center mb-8">
-        Premium Members
-      </h1>
+    <div className="max-w-screen-xl pt-4 lg:px-2 px-4 mx-auto">
+      {/* Heading */}
+      <div>
+        <h1 className="lg:text-3xl md:text-2xl text-lg font-bold text-center text-text1 md:mb-3 mb-2">
+          Meet Our Exclusive Premium Members
+        </h1>
+        <p className="text-center text-text2 md:text-xl mb-8">
+          Discover verified and committed individuals looking for a meaningful
+          connection.
+        </p>
+      </div>
 
       {/* Sorting Dropdown */}
       <div className="mb-5 text-center">
         <label className="text-lg font-semibold mr-3">Sort by Age:</label>
         <select
-          className="border border-gray-300 rounded-lg px-4 py-2"
+          className="border border-gray-300 bg-neutral rounded-lg px-4 py-2"
           value={sortOrder}
           onChange={(e) => setSortOrder(e.target.value)}
         >
@@ -160,38 +80,60 @@ const PremiumMember = () => {
       </div>
 
       {/* Premium Member Cards */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         {displayedMembers.map((member) => (
           <div
             key={member.biodataId}
-            className="bg-white shadow-lg rounded-lg p-5"
+            className="bg-neutral shadow-md rounded-xl"
           >
             <img
               src={member.photoURL}
               alt={member.name}
-              className="w-full h-48 object-cover rounded-lg mb-4"
+              className="w-full h-48 object-cover rounded-lg"
             />
-            <h2 className="text-xl font-bold text-gray-800">
-              {member.name} ({member.biodataType})
-            </h2>
-            <p className="text-gray-600">
-              <strong>Biodata ID:</strong> {member.biodataId}
-            </p>
-            <p className="text-gray-600">
-              <strong>Permanent Division:</strong> {member.permanentDivision}
-            </p>
-            <p className="text-gray-600">
-              <strong>Age:</strong> {member.age}
-            </p>
-            <p className="text-gray-600">
-              <strong>Occupation:</strong> {member.occupation}
-            </p>
-            <Link
-              to={`/biodatas/${member._id}`}
-              className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 inline-block"
-            >
-              View Profile
-            </Link>
+            <div className="p-4">
+              <div className="flex justify-between">
+                <h2 className="md:text-lg font-bold text-text1">
+                  {member.name}
+                </h2>
+                <h3
+                  className={`font-medium px-3 rounded-lg ${
+                    member.biodataType === "Male"
+                      ? "bg-green-200 text-text3 border border-green-500 "
+                      : "bg-pink-200 text-text3 border border-pink-500 "
+                  }`}
+                >
+                  {member.biodataType}
+                </h3>
+              </div>
+
+              <p className="text-text1 font-medium">{member.occupation}</p>
+              <p className="text-text2 mt-2">
+                Biodata ID:{" "}
+                <span className="font-semibold text-text1">
+                  {member.biodataId}
+                </span>
+              </p>
+              <p className="text-text2 mt-1">
+                Age:{" "}
+                <span className="text-text1 font-semibold">{member.age}</span>
+              </p>
+
+              {/* Parmanet division */}
+              <p className="text-text2 mt-1">
+                Location:{" "}
+                <span className="text-text1 font-semibold">
+                  {member.permanentDivision}
+                </span>
+              </p>
+
+              <Link
+                to={`/biodatas/${member._id}`}
+                className="mt-4 bg-primary text-white py-2 px-4 rounded-lg hover:bg-[#E32636] inline-block"
+              >
+                View Profile
+              </Link>
+            </div>
           </div>
         ))}
       </div>

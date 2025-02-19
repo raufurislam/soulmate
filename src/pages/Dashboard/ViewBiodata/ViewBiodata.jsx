@@ -5,7 +5,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import Modal from "react-modal"; // Import react-modal
+import Modal from "react-modal";
+import { IoLocationOutline } from "react-icons/io5";
 
 const ViewBiodata = () => {
   const { user } = useAuth();
@@ -80,8 +81,8 @@ const ViewBiodata = () => {
   const userRole = users?.role;
 
   return (
-    <div className="px-4 lg:px-32 py-6">
-      <div className="max-w-screen-xl shadow-lg mx-auto bg-white rounded-2xl border p-6">
+    <div className="max-w-screen-2xl mx-auto p-4 lg:px-8 ">
+      <div className="max-w-screen-xl shadow-lg mx-auto bg-neutral rounded-2xl p-6">
         {/* Profile Section */}
         <div className="flex flex-col lg:flex-row gap-6 items-center">
           <div>
@@ -95,13 +96,14 @@ const ViewBiodata = () => {
             />
           </div>
           <div className="text-center lg:text-left">
-            <h1 className="text-2xl lg:text-3xl font-bold mb-2">
+            <h1 className="text-2xl lg:text-3xl text-text1 font-bold mb-1">
               {biodata?.name || "Name N/A"}
             </h1>
-            <p className="text-gray-600 font-semibold">
+            <p className="text-text2 font-semibold mb-1">
               {biodata?.occupation || "Occupation N/A"}
             </p>
-            <p className="text-gray-600 font-semibold">
+            <p className="flex items-center gap-2 text-text2 font-semibold">
+              <IoLocationOutline />
               {biodata?.presentDivision || "Present Division N/A"}
             </p>
           </div>
@@ -111,47 +113,61 @@ const ViewBiodata = () => {
         <h2 className="text-xl font-bold mt-6 mb-4">Personal Information</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div>
-            <small className="text-gray-600">Biodata Type</small>
-            <h3 className="font-semibold">{biodata?.biodataType || "N/A"}</h3>
+            <small className="text-text2">Biodata Type</small>
+            <h3 className="font-semibold text-text1">
+              {biodata?.biodataType || "N/A"}
+            </h3>
           </div>
           <div className="lg:col-span-2">
-            <small className="text-gray-600">Permanent Division</small>
-            <h3 className="font-semibold">
+            <small className="text-text2">Permanent Division</small>
+            <h3 className="font-semibold text-text1">
               {biodata?.permanentDivision || "N/A"}
             </h3>
           </div>
           <div>
-            <small className="text-gray-600">Father's Name</small>
-            <h3 className="font-semibold">{biodata?.fathersName || "N/A"}</h3>
+            <small className="text-text2">Father's Name</small>
+            <h3 className="font-semibold text-text1">
+              {biodata?.fathersName || "N/A"}
+            </h3>
           </div>
           <div className="lg:col-span-2">
-            <small className="text-gray-600">Mother's Name</small>
-            <h3 className="font-semibold">{biodata?.mothersName || "N/A"}</h3>
+            <small className="text-text2">Mother's Name</small>
+            <h3 className="font-semibold text-text1">
+              {biodata?.mothersName || "N/A"}
+            </h3>
           </div>
 
           <div>
-            <small className="text-gray-600">Date of Birth</small>
-            <h3 className="font-semibold">
+            <small className="text-text2">Date of Birth</small>
+            <h3 className="font-semibold text-text1">
               {biodata?.birthDate
                 ? new Date(biodata?.birthDate).toLocaleDateString()
                 : "N/A"}
             </h3>
           </div>
           <div className="lg:col-span-2">
-            <small className="text-gray-600">Age</small>
-            <h3 className="font-semibold">{biodata?.age || "N/A"}</h3>
+            <small className="text-text2">Age</small>
+            <h3 className="font-semibold text-text1">
+              {biodata?.age || "N/A"}
+            </h3>
           </div>
           <div>
-            <small className="text-gray-600">Height</small>
-            <h3 className="font-semibold">{biodata?.height || "N/A"}</h3>
+            <small className="text-text2">Height</small>
+            <h3 className="font-semibold text-text1">
+              {biodata?.height || "N/A"}
+            </h3>
           </div>
           <div className="lg:col-span-2">
-            <small className="text-gray-600">Weight</small>
-            <h3 className="font-semibold">{biodata?.weight || "N/A"}</h3>
+            <small className="text-text2">Weight</small>
+            <h3 className="font-semibold text-text1">
+              {biodata?.weight || "N/A"}
+            </h3>
           </div>
           <div>
-            <small className="text-gray-600">Race (Skin Color)</small>
-            <h3 className="font-semibold">{biodata?.race || "N/A"}</h3>
+            <small className="text-text2">Race (Skin Color)</small>
+            <h3 className="font-semibold text-text1">
+              {biodata?.race || "N/A"}
+            </h3>
           </div>
         </div>
 
@@ -161,16 +177,22 @@ const ViewBiodata = () => {
         </h2>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
           <div>
-            <small className="text-gray-600">Expected Partner Age</small>
-            <h3 className="font-semibold">{biodata?.partnerAge || "N/A"}</h3>
+            <small className="text-text2">Expected Partner Age</small>
+            <h3 className="font-semibold text-text1">
+              {biodata?.partnerAge || "N/A"}
+            </h3>
           </div>
           <div>
-            <small className="text-gray-600">Expected Partner Height</small>
-            <h3 className="font-semibold">{biodata?.partnerHeight || "N/A"}</h3>
+            <small className="text-text2">Expected Partner Height</small>
+            <h3 className="font-semibold text-text1">
+              {biodata?.partnerHeight || "N/A"}
+            </h3>
           </div>
           <div className="md:col-span-2">
-            <small className="text-gray-600">Expected Partner Weight</small>
-            <h3 className="font-semibold">{biodata?.partnerWeight || "N/A"}</h3>
+            <small className="text-text2">Expected Partner Weight</small>
+            <h3 className="font-semibold text-text1">
+              {biodata?.partnerWeight || "N/A"}
+            </h3>
           </div>
         </div>
 
@@ -178,12 +200,16 @@ const ViewBiodata = () => {
         <h2 className="text-xl font-bold mt-6 mb-4">Contact Information</h2>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
           <div>
-            <small className="text-gray-600">Email</small>
-            <h3 className="font-semibold">{biodata?.email || "N/A"}</h3>
+            <small className="text-text2">Email</small>
+            <h3 className="font-semibold text-text1">
+              {biodata?.email || "N/A"}
+            </h3>
           </div>
           <div className="lg:col-span-2">
-            <small className="text-gray-600">Mobile Number</small>
-            <h3 className="font-semibold">{biodata?.mobile || "N/A"}</h3>
+            <small className="text-text2">Mobile Number</small>
+            <h3 className="font-semibold text-text1">
+              {biodata?.mobile || "N/A"}
+            </h3>
           </div>
         </div>
 
@@ -222,7 +248,7 @@ const ViewBiodata = () => {
             </button>
           ) : userRole === "requestedPremium" ? (
             <button
-              className="px-6 py-3 bg-yellow-400 text-white rounded-lg"
+              className="px-6 py-3 bg-primary  text-gray-300 rounded-lg"
               disabled
             >
               Premium Request Sent
@@ -230,7 +256,7 @@ const ViewBiodata = () => {
           ) : (
             <button
               onClick={openModal}
-              className="px-6 py-3 bg-[#ED5A6A] text-white rounded-lg hover:bg-[#d64a5b]"
+              className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-[#E32636]"
               disabled={isButtonDisabled}
             >
               Make Premium

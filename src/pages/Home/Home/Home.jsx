@@ -5,6 +5,9 @@ import SuccessStory from "../SuccessStory/SuccessStory";
 import HowItWorksSection from "../HowItWorksSection/HowItWorksSection";
 import SuccessCounterSection from "../SuccessCounterSection/SuccessCounterSection";
 import PremiumMember from "../PremiumMember/PremiumMember";
+import Faq from "../Faq/Faq";
+import WhyChooseUs from "../WhyChooseUs/WhyChooseUs";
+import JoinNowCTA from "../JoinNowCTA/JoinNowCTA";
 
 const Home = () => {
   return (
@@ -27,6 +30,18 @@ const Home = () => {
 
       <div className="my-10 text-center">
         <SuccessStory></SuccessStory>
+      </div>
+
+      <div className="my-10 text-center">
+        <WhyChooseUs></WhyChooseUs>
+      </div>
+
+      <div className="my-10 text-center">
+        <Faq></Faq>
+      </div>
+
+      <div className="my-10 text-center">
+        <JoinNowCTA></JoinNowCTA>
       </div>
     </div>
   );

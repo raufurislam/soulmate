@@ -2,7 +2,14 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        text1: "var(--text1)",
+        text2: "var(--text2)",
+        text3: "var(--text3)",
+        text4: "var(--text4)",
+      },
+    },
   },
   plugins: [require("flowbite/plugin"), require("daisyui")],
 
@@ -10,20 +17,24 @@ export default {
     themes: [
       {
         light: {
-          primary: "#183C6D", // Sky blue
-          secondary: "#002C5B", // Icy azure
-          accent: "#4B5563", // Glacier blue
-          neutral: "#E2E8F0", // Frosty gray
-          "base-300": "#F0FDF4", // Frosty green
-          "base-100": "#FFFFFF", // Snow white FFFFFF
+          primary: "#E63946",
+          neutral: "#F4F4F4",
+          accent: "#F9FAFB",
+          "base-100": "#FFFFFF",
+          "--text1": "#44444D", // Text color 1
+          "--text2": "#717376", // Text color 2 7F8287
+          "--text3": "#44444D", // Text color 2
+          "--text4": "#D1D5DB", // Text color 2
         },
         dark: {
-          primary: "#183C6D", // Midnight blue
-          secondary: "#CCCDD1", // Deep sky
-          accent: "#9CA3AF", // Cool glacier
-          neutral: "#E2E8F0", // Mountain shadow
-          "base-300": "#1F2937", // Frosty gray
-          "base-100": "#1A202C", // Night black
+          primary: "#E63946",
+          neutral: "#252631",
+          accent: "#22232D",
+          "base-100": "#1C1D27",
+          "--text1": "#F1F1F1", // Text color 1
+          "--text2": "#AAB8C5", // Text color 2
+          "--text3": "#44444D", // Text color 2
+          "--text4": "#44444D", // Text color 2
         },
       },
     ], // Include light and dark themes

@@ -85,85 +85,92 @@ const GotMarried = () => {
   };
 
   return (
-    <div className="max-w-screen-xl mx-auto p-5 lg:px-40">
+    <div className="max-w-screen-2xl mx-auto p-4 lg:px-8 bg-base-100">
       <ToastContainer position="top-center" autoClose={1500} />
 
-      <div className="bg-blue-50 p-5 lg:p-8">
-        <h1>Got Married</h1>
+      <div className="">
+        {/* Page Header */}
+        <div className="bg-neutral shadow-lg rounded-lg p-6 mb-6">
+          <h1 className="text-2xl font-semibold text-text1">Got Married</h1>
+        </div>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-5">
-            {/* Self Biodata Id */}
-            <div className="form-control w-full">
-              <label className="block mb-2 text-sm font-medium text-gray-900">
-                Self Biodata Id
-              </label>
-              <input
-                {...register("selfBiodataId", { required: true })}
-                type="text"
-                value={biodatas?.biodataId || ""}
-                readOnly
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              />
+            <div className="grid md:grid-cols-2 gap-5">
+              {/* Self Biodata Id */}
+              <div className="form-control w-full">
+                <label className="block mb-2 text-sm font-medium text-text1 dark:text-white">
+                  Self Biodata Id
+                </label>
+                <input
+                  {...register("selfBiodataId", { required: true })}
+                  type="text"
+                  value={biodatas?.biodataId || ""}
+                  readOnly
+                  className="bg-neutral border border-text4 text-text2 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
+                />
+              </div>
+
+              {/* Partner Biodata Id */}
+              <div className="form-control w-full">
+                <label className="block mb-2 text-sm font-medium text-text1 dark:text-white">
+                  Partner Biodata Id
+                </label>
+                <input
+                  {...register("partnerBiodataId", { required: true })}
+                  type="number"
+                  placeholder="Enter partner's Biodata ID"
+                  className="bg-neutral border border-text4 text-text2 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
+                />
+              </div>
             </div>
 
-            {/* Partner Biodata Id */}
-            <div className="form-control w-full">
-              <label className="block mb-2 text-sm font-medium text-gray-900">
-                Partner Biodata Id
-              </label>
-              <input
-                {...register("partnerBiodataId", { required: true })}
-                type="number"
-                placeholder="Enter partner's Biodata ID"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              />
-            </div>
+            <div className="grid md:grid-cols-2 gap-5">
+              {/* Marriage Date */}
+              <div className="form-control w-full">
+                <label className="block mb-2 text-sm font-medium text-text1 dark:text-white">
+                  Marriage Date
+                </label>
+                <DatePicker
+                  selected={marriageDate}
+                  onChange={handleDateChange}
+                  maxDate={new Date()}
+                  dateFormat="dd-MM-yyyy"
+                  placeholderText="Select a date"
+                  className="bg-neutral border border-text4 text-text2 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
+                />
+              </div>
 
-            {/* Marriage Date */}
-            <div className="form-control w-full">
-              <label className="block mb-2 text-sm font-medium text-gray-900">
-                Marriage Date
-              </label>
-              <DatePicker
-                selected={marriageDate}
-                onChange={handleDateChange}
-                maxDate={new Date()}
-                dateFormat="dd-MM-yyyy"
-                placeholderText="Select a date"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              />
-            </div>
-
-            {/* Couple Image Link */}
-            <div className="form-control w-full">
-              <label className="block mb-2 text-sm font-medium text-gray-900">
-                Couple Image Link
-              </label>
-              <input
-                {...register("coupleImageLink", { required: true })}
-                type="url"
-                placeholder="Enter couple image URL"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              />
+              {/* Couple Image Link */}
+              <div className="form-control w-full">
+                <label className="block mb-2 text-sm font-medium text-text1 dark:text-white">
+                  Couple Image Link
+                </label>
+                <input
+                  {...register("coupleImageLink", { required: true })}
+                  type="url"
+                  placeholder="Enter couple image URL"
+                  className="bg-neutral border border-text4 text-text2 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
+                />
+              </div>
             </div>
 
             {/* Success Story */}
             <div className="form-control w-full">
-              <label className="block mb-2 text-sm font-medium text-gray-900">
+              <label className="block mb-2 text-sm font-medium text-text1 dark:text-white">
                 Success Story
               </label>
               <textarea
                 {...register("successStory", { required: true })}
                 placeholder="Share your success story"
                 rows="3"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                className="bg-neutral border border-text4 text-text2 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
               />
             </div>
 
             {/* Review Stars */}
-            <div className="form-control w-full">
-              <label className="block mb-2 text-sm font-medium text-gray-900">
+            <div className="form-control w-fit">
+              <label className="block mb-2 text-sm font-medium text-text1 dark:text-white">
                 Review Star (out of 5)
               </label>
               <input
@@ -180,7 +187,7 @@ const GotMarried = () => {
                 })}
                 type="number"
                 placeholder="Enter a rating (0-5)"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                className="bg-neutral border border-text4 text-text2 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
               />
               {errors.reviewStar && (
                 <p className="text-red-500 text-sm mt-1">

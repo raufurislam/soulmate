@@ -98,7 +98,7 @@ const EditBiodata = () => {
   };
 
   return (
-    <div className="max-w-screen-xl mx-auto p-4 lg:px-8 bg-blue-50">
+    <div className="max-w-screen-2xl mx-auto p-4 lg:px-8 bg-base-100">
       <div>
         <h1 className="lg:text-3xl text-2xl text-center font-bold mb-6 mt-4">
           Edit Your Biodata
@@ -109,20 +109,20 @@ const EditBiodata = () => {
         <div className="flex flex-col md:flex-row gap-5">
           {/* Name */}
           <div className="form-control w-full">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-medium text-text1 dark:text-white">
               Name*
             </label>
             <input
               {...register("name", { required: true })}
               type="text"
               placeholder="Enter your name"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-neutral border border-text4 text-text2 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
             />
           </div>
 
           {/* Photo URL */}
           <div className="form-control w-full">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-medium text-text1">
               Photo URL*
             </label>
             <input
@@ -130,7 +130,7 @@ const EditBiodata = () => {
               type="url"
               // defaultValue={photoURL}
               placeholder="Enter photo URL"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-neutral border border-text4 text-text2 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
             />
           </div>
         </div>
@@ -139,7 +139,7 @@ const EditBiodata = () => {
         <div className="flex flex-col md:flex-row gap-5 my-6">
           {/* Date of Birth */}
           <div className="form-control w-full">
-            <label className="block mb-2 w-full text-sm font-medium text-gray-900 dark:text-white">
+            <label className="block mb-2 w-full text-sm font-medium text-text1 dark:text-white">
               Date of Birth* (age must be 18)
             </label>
             <DatePicker
@@ -150,18 +150,18 @@ const EditBiodata = () => {
               maxDate={
                 new Date(new Date().setFullYear(new Date().getFullYear() - 18))
               } // Restrict to 18 years
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              className="bg-neutral border border-text4 text-text2 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
             />
           </div>
 
           {/* Biodata Type */}
           <div className="form-control w-full">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-medium text-text1 dark:text-white">
               Biodata Type*
             </label>
             <select
               {...register("biodataType", { required: true })}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-neutral border border-text4 text-text2 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
             >
               <option value="">Select</option>
               <option value="Male">Male</option>
@@ -174,12 +174,12 @@ const EditBiodata = () => {
         <div className="flex flex-col md:flex-row gap-5">
           {/* Height */}
           <div className="form-control w-full">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-medium text-text1 dark:text-white">
               Height*
             </label>
             <select
               {...register("height", { required: true })}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-neutral border border-text4 text-text2 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
             >
               <option value="">Select</option>
               {heights.map((h) => (
@@ -192,12 +192,12 @@ const EditBiodata = () => {
 
           {/* Weight */}
           <div className="form-control w-full">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-medium text-text1 dark:text-white">
               Weight*
             </label>
             <select
               {...register("weight", { required: true })}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-neutral border border-text4 text-text2 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
             >
               <option value="">Select</option>
               {weights.map((w) => (
@@ -213,25 +213,25 @@ const EditBiodata = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-6">
           {/* Age */}
           <div className="form-control">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-medium text-text1 dark:text-white">
               Age*
             </label>
             <input
               {...register("age", { required: true })}
               type="number"
               placeholder="Enter your age"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-neutral border border-text4 text-text2 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
             />
           </div>
 
           {/* Occupation */}
           <div className="form-control">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-medium text-text1 dark:text-white">
               Occupation*
             </label>
             <select
               {...register("occupation", { required: true })}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-neutral border border-text4 text-text2 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
             >
               <option value="">Select</option>
               {occupations.map((o) => (
@@ -244,12 +244,12 @@ const EditBiodata = () => {
 
           {/* Race */}
           <div className="form-control w-full">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-medium text-text1 dark:text-white">
               Race (Skin Color)*
             </label>
             <select
               {...register("race", { required: true })}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-neutral border border-text4 text-text2 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
               defaultValue=""
               required
             >
@@ -264,38 +264,38 @@ const EditBiodata = () => {
 
           {/* Fathers Name */}
           <div className="form-control">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-medium text-text1 dark:text-white">
               Father's Name
             </label>
             <input
               {...register("fathersName", { required: true })}
               type="text"
               placeholder="Enter father's name"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-neutral border border-text4 text-text2 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
             />
           </div>
 
           {/* Mothers Name */}
           <div className="form-control">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-medium text-text1 dark:text-white">
               Mother's Name
             </label>
             <input
               {...register("mothersName", { required: true })}
               type="text"
               placeholder="Enter mother's name"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-neutral border border-text4 text-text2 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
             />
           </div>
 
           {/* Permanent Division */}
           <div className="form-control">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-medium text-text1 dark:text-white">
               Permanent Division*
             </label>
             <select
               {...register("permanentDivision", { required: true })}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-neutral border border-text4 text-text2 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
             >
               <option value="">Select</option>
               {divisions.map((d) => (
@@ -307,12 +307,12 @@ const EditBiodata = () => {
           </div>
           {/* Permanent Division */}
           <div className="form-control">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-medium text-text1 dark:text-white">
               Present Division*
             </label>
             <select
               {...register("presentDivision", { required: true })}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-neutral border border-text4 text-text2 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
             >
               <option value="">Select</option>
               {divisions.map((d) => (
@@ -326,25 +326,25 @@ const EditBiodata = () => {
           {/* Expected Partner req info */}
           {/* Expected Age */}
           <div className="form-control">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-medium text-text1 dark:text-white">
               Expected Partner Age*
             </label>
             <input
               {...register("partnerAge", { required: true })}
               type="number"
               placeholder="Enter your age"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-neutral border border-text4 text-text2 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
             />
           </div>
 
           {/* Expected Height */}
           <div className="form-control w-full">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-medium text-text1 dark:text-white">
               Height*
             </label>
             <select
               {...register("partnerHeight", { required: true })}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-neutral border border-text4 text-text2 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
             >
               <option value="">Select</option>
               {heights.map((h) => (
@@ -357,12 +357,12 @@ const EditBiodata = () => {
 
           {/* Expected Weight */}
           <div className="form-control w-full">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-medium text-text1 dark:text-white">
               Weight*
             </label>
             <select
               {...register("partnerWeight", { required: true })}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-neutral border border-text4 text-text2 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
             >
               <option value="">Select</option>
               {weights.map((w) => (
@@ -375,7 +375,7 @@ const EditBiodata = () => {
 
           {/* Email */}
           <div className="form-control">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-medium text-text1 dark:text-white">
               Email*
             </label>
             <input
@@ -383,20 +383,20 @@ const EditBiodata = () => {
               type="email"
               value={user.email}
               placeholder="Enter your email"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-neutral border border-text4 text-text2 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
               disabled
             />
           </div>
           {/* Mobile */}
           <div className="form-control">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label className="block mb-2 text-sm font-medium text-text1 dark:text-white">
               Mobile Number*
             </label>
             <input
               {...register("mobile", { required: true })}
               type="tel"
               placeholder="Enter your mobile number"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-neutral border border-text4 text-text2 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
             />
           </div>
         </div>
@@ -405,7 +405,7 @@ const EditBiodata = () => {
         <div className="mt-8">
           <button
             type="submit"
-            className="px-6 py-3 bg-[#ED5A6A] text-white rounded-lg hover:bg-[#d64a5b]"
+            className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-[#E32636]"
           >
             Update Biodata
           </button>
