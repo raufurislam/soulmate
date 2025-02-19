@@ -209,7 +209,7 @@ const Navbar = () => {
             {mobileMenuVisible && (
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-44 p-2 shadow z-50"
+                className="menu menu-sm dropdown-content bg-neutral rounded-box mt-3 w-44 p-2 shadow-md z-50"
               >
                 {links}
               </ul>
@@ -273,7 +273,7 @@ const Navbar = () => {
                 </span>
               </div>
               {dropdownVisible && (
-                <div className="absolute right-0 md:top-12 top-10 mt-2 bg-white shadow-md rounded p-2 z-20 w-52">
+                <div className="absolute right-0 md:top-12 top-10 mt-2 bg-neutral shadow-md rounded p-2 z-20 w-52">
                   {profileLinks}
                 </div>
               )}
