@@ -51,6 +51,10 @@ const Login = () => {
           <p className="text-gray-700 mb-6 text-text2">
             Enter your email and password
           </p>
+          {/* make a demo credential. when user click this button immidietly login*/}
+          {/* admin : "raufur@gmail.com" and "password:753951Bd" */}
+          {/* premium : "raufur30@gmail.com" and "password:753951Bd" */}
+
           <form onSubmit={handleLogin}>
             <div className="mb-5">
               <label
@@ -62,7 +66,7 @@ const Login = () => {
               <input
                 type="email"
                 id="email"
-                className="bg-accent border border-text4 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
+                className="bg-accent border border-text4 text-text2 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
                 placeholder="name@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -80,7 +84,7 @@ const Login = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 id="password"
-                className="bg-accent border border-text4 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
+                className="bg-accent border border-text4 text-text2 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
