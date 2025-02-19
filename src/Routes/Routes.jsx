@@ -52,6 +52,14 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: "payment/:id",
+        element: (
+          <PrivateRoute>
+            <Payment></Payment>
+          </PrivateRoute>
+        ),
+      },
+      {
         path: "auth",
         element: <AuthPage></AuthPage>,
         children: [
@@ -108,14 +116,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      {
-        path: "payment/:id",
-        element: (
-          <PrivateRoute>
-            <Payment></Payment>
-          </PrivateRoute>
-        ),
-      },
+
       {
         path: "married",
         element: (

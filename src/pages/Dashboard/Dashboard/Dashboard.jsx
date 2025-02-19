@@ -18,10 +18,12 @@ import { GiBigDiamondRing } from "react-icons/gi";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import {
+  MdOutlineAddIcCall,
   MdOutlineManageAccounts,
   MdOutlineWorkspacePremium,
 } from "react-icons/md";
 import FooterDashboard from "../../Shared/Footer/FooterDashboard";
+import { IoInformationCircleOutline } from "react-icons/io5";
 
 const Dashboard = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -100,27 +102,7 @@ const Dashboard = () => {
 
   const profileLinks = (
     <div className="flex flex-col text-left gap-3 px-5 py-2">
-      <NavLink
-        to="/addItem"
-        className={({ isActive }) =>
-          isActive
-            ? "text-blue-500 font-medium underline-offset-4 underline"
-            : "text-slate-700 hover:text-blue-700 font-medium"
-        }
-      >
-        Add Lost And Found
-      </NavLink>
-      <NavLink
-        to="/allRecover"
-        className={({ isActive }) =>
-          isActive
-            ? "text-blue-500 font-medium underline-offset-4 underline"
-            : "text-slate-700 hover:text-blue-700 font-medium"
-        }
-      >
-        All Recovered Item
-      </NavLink>
-      <NavLink
+      {/* <NavLink
         to="/myItems"
         className={({ isActive }) =>
           isActive
@@ -129,11 +111,11 @@ const Dashboard = () => {
         }
       >
         Manage My Item
-      </NavLink>
+      </NavLink> */}
       {/* Logout Button (only when logged in) */}
       <button
         onClick={handleLogout}
-        className="text-slate-700 hover:text-blue-700 font-medium text-left"
+        className="text-text1 hover:text-primary font-medium text-left"
       >
         Logout{" "}
       </button>
@@ -144,7 +126,7 @@ const Dashboard = () => {
     <div className="flex h-screen">
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 w-64 h-full bg-neutral text-white p-5 space-y-6 z-50 transition-transform lg:transform-none ${
+        className={`fixed top-0 left-0 w-64 h-full bg-[#252631] text-white p-5 space-y-6 z-50 transition-transform lg:transform-none ${
           isMenuOpen ? "transform-none" : "transform -translate-x-full"
         }`}
       >
@@ -167,6 +149,9 @@ const Dashboard = () => {
 
         {/* Navigation Links */}
         <nav className="flex flex-col space-y-4">
+          <div className="pt-6">
+            <p className="text-[#F1F1F1] font-bold ">Dashboard</p>
+          </div>
           {isAdmin ? (
             <>
               <NavLink
@@ -175,7 +160,7 @@ const Dashboard = () => {
                   `inline-flex items-center gap-2 transition ${
                     isActive
                       ? "text-primary font-bold border-primary border-b-2 w-fit"
-                      : "text-text1 hover:text-primary font-medium"
+                      : "text-[#F1F1F1] hover:text-primary font-medium"
                   }`
                 }
               >
@@ -188,7 +173,7 @@ const Dashboard = () => {
                   `inline-flex items-center gap-2 transition ${
                     isActive
                       ? "text-primary font-bold border-primary border-b-2 w-fit"
-                      : "text-text1 hover:text-primary font-medium"
+                      : "text-[#F1F1F1] hover:text-primary font-medium"
                   }`
                 }
               >
@@ -201,7 +186,7 @@ const Dashboard = () => {
                   `inline-flex items-center gap-2 transition ${
                     isActive
                       ? "text-primary font-bold border-primary border-b-2 w-fit"
-                      : "text-text1 hover:text-primary font-medium"
+                      : "text-[#F1F1F1] hover:text-primary font-medium"
                   }`
                 }
               >
@@ -214,7 +199,7 @@ const Dashboard = () => {
                   `inline-flex items-center gap-2 transition ${
                     isActive
                       ? "text-primary font-bold border-primary border-b-2 w-fit"
-                      : "text-text1 hover:text-primary font-medium"
+                      : "text-[#F1F1F1] hover:text-primary font-medium"
                   }`
                 }
               >
@@ -230,7 +215,7 @@ const Dashboard = () => {
                   `inline-flex items-center gap-2 transition ${
                     isActive
                       ? "text-primary font-bold border-primary border-b-2 w-fit"
-                      : "text-text1 hover:text-primary font-medium"
+                      : "text-[#F1F1F1] hover:text-primary font-medium"
                   }`
                 }
               >
@@ -244,7 +229,7 @@ const Dashboard = () => {
                   `inline-flex items-center gap-2 transition ${
                     isActive
                       ? "text-primary font-bold border-primary border-b-2 w-fit"
-                      : "text-text1 hover:text-primary font-medium"
+                      : "text-[#F1F1F1] hover:text-primary font-medium"
                   }`
                 }
               >
@@ -257,7 +242,7 @@ const Dashboard = () => {
                   `inline-flex items-center gap-2 transition ${
                     isActive
                       ? "text-primary font-bold border-primary border-b-2 w-fit"
-                      : "text-text1 hover:text-primary font-medium"
+                      : "text-[#F1F1F1] hover:text-primary font-medium"
                   }`
                 }
               >
@@ -270,7 +255,7 @@ const Dashboard = () => {
                   `inline-flex items-center gap-2 transition ${
                     isActive
                       ? "text-primary font-bold border-primary border-b-2 w-fit"
-                      : "text-text1 hover:text-primary font-medium"
+                      : "text-[#F1F1F1] hover:text-primary font-medium"
                   }`
                 }
               >
@@ -283,7 +268,7 @@ const Dashboard = () => {
                   `inline-flex items-center gap-2 transition ${
                     isActive
                       ? "text-primary font-bold border-primary border-b-2 w-fit"
-                      : "text-text1 hover:text-primary font-medium"
+                      : "text-[#F1F1F1] hover:text-primary font-medium"
                   }`
                 }
               >
@@ -293,27 +278,50 @@ const Dashboard = () => {
             </>
           )}
 
+          {/* <div className="border border-text2 w-full"></div> */}
+          <div className="pt-6">
+            <p className="text-[#F1F1F1] font-bold ">Main</p>
+          </div>
+
           <NavLink
             to="/"
             className={({ isActive }) =>
               `inline-flex items-center gap-2 transition ${
                 isActive
                   ? "text-primary font-bold border-primary border-b-2 w-fit"
-                  : "text-text1 hover:text-primary font-medium"
+                  : "text-[#F1F1F1] hover:text-primary font-medium"
               }`
             }
           >
             <RiHome9Line />
             Back to Home
           </NavLink>
-
-          <div className="border border-primary w-full"></div>
-          <button
-            onClick={handleLogout}
-            className="text-left hover:text-primary"
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `inline-flex items-center gap-2 transition ${
+                isActive
+                  ? "text-primary font-bold border-primary border-b-2 w-fit"
+                  : "text-[#F1F1F1] hover:text-primary font-medium"
+              }`
+            }
           >
-            Logout
-          </button>
+            <IoInformationCircleOutline />
+            About Us
+          </NavLink>
+          <NavLink
+            to="/contact"
+            className={({ isActive }) =>
+              `inline-flex items-center gap-2 transition ${
+                isActive
+                  ? "text-primary font-bold border-primary border-b-2 w-fit"
+                  : "text-[#F1F1F1] hover:text-primary font-medium"
+              }`
+            }
+          >
+            <MdOutlineAddIcCall />
+            Contact Us
+          </NavLink>
         </nav>
       </div>
 
@@ -329,7 +337,7 @@ const Dashboard = () => {
             {/* Toggle theme */}
             <button
               onClick={toggleTheme}
-              className="btn btn-ghost ml-2 text-primary rounded-full px-3 mr-3 border text-xl flex items-center justify-center"
+              className=" ml-2 text-primary border-primary rounded-full w-8 h-8 md:w-11 md:h-11  mr-3 border text-xl flex items-center justify-center"
               aria-label="Toggle Theme"
             >
               {theme === "light" ? <FaMoon /> : <FaSun />}
@@ -355,18 +363,18 @@ const Dashboard = () => {
                   {dropdownVisible ? (
                     <IoIosArrowUp
                       size={22}
-                      className="bg-base-200 border rounded-full"
+                      className="bg-text1 text-neutral border rounded-full"
                     />
                   ) : (
                     <IoIosArrowDown
                       size={22}
-                      className="bg-base-200 rounded-full"
+                      className="bg-text1 text-neutral rounded-full"
                     />
                   )}
                 </span>
               </div>
               {dropdownVisible && (
-                <div className="absolute right-0 md:top-12 top-10 mt-2 bg-white shadow-md rounded p-2 z-20 w-52">
+                <div className="absolute right-0 md:top-12 top-10 mt-2 bg-neutral shadow-md rounded p-2 z-20 w-52">
                   {profileLinks}
                 </div>
               )}

@@ -10,8 +10,8 @@ const Payment = () => {
 
   return (
     <div className="max-w-screen-xl p-5 mx-auto">
-      <div className=" lg:mx-40 p-10 rounded-xl bg-white shadow-lg">
-        <h1>Payment page</h1>
+      <div className=" lg:mx-40 p-10 rounded-xl bg-neutral shadow-lg">
+        <h1 className="text-2xl font-semibold text-text1">Payment page</h1>
 
         <div>
           <Elements stripe={stripePromise}>

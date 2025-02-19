@@ -93,62 +93,45 @@ const CheckoutForm = ({ id }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="mb-4">
-        <label className="block text-sm font-semibold text-gray-700">
+      <div className="my-4">
+        <label className="block text-sm font-semibold text-text2">
           Biodata ID (for contact request)
         </label>
         <input
           type="text"
           value={id}
           readOnly
-          className="w-full p-3 mt-2 bg-gray-100 rounded-lg"
+          className="w-full p-3 mt-2 bg-accent rounded-lg"
         />
       </div>
       <div className="mb-4">
-        <label className="block text-sm font-semibold text-gray-700">
+        <label className="block text-sm font-semibold text-text2">
           Your Email (Requester)
         </label>
         <input
           type="email"
           value={user.email}
           readOnly
-          className="w-full p-3 mt-2 bg-gray-100 rounded-lg"
+          className="w-full p-3 mt-2 bg-accent rounded-lg"
         />
       </div>
       <div className="mb-4">
-        <label className="block text-sm font-semibold text-gray-700">
+        <label className="block text-sm font-semibold text-text2 mb-3 mt-6">
           Card Details
         </label>
-        {/* <CardElement
-          options={{
-            style: {
-              base: {
-                fontSize: "16px",
-                color: "#424770",
-                "::placeholder": {
-                  color: "#aab7c4",
-                },
-                height: "200px",
 
-              },
-              invalid: {
-                color: "#9e2146",
-              },
-            },
-          }}
-        /> */}
         <CardElement
           options={{
             style: {
               base: {
                 fontSize: "16px",
-                color: "#424770",
+                color: "#717376",
                 fontFamily: "'Roboto', sans-serif",
                 "::placeholder": {
-                  color: "#aab7c4",
+                  color: "#717376",
                 },
                 padding: "10px 12px",
-                border: "1px solid #ccc",
+                border: "5px solid #ccc",
                 borderRadius: "4px",
               },
               complete: {

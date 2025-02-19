@@ -158,27 +158,7 @@ const Navbar = () => {
 
   const profileLinks = (
     <div className="flex flex-col text-left gap-3 px-5 py-2">
-      <NavLink
-        to="/addItem"
-        className={({ isActive }) =>
-          isActive
-            ? "text-blue-500 font-medium underline-offset-4 underline"
-            : "text-slate-700 hover:text-blue-700 font-medium"
-        }
-      >
-        Add Lost And Found
-      </NavLink>
-      <NavLink
-        to="/allRecover"
-        className={({ isActive }) =>
-          isActive
-            ? "text-blue-500 font-medium underline-offset-4 underline"
-            : "text-slate-700 hover:text-blue-700 font-medium"
-        }
-      >
-        All Recovered Item
-      </NavLink>
-      <NavLink
+      {/* <NavLink
         to="/myItems"
         className={({ isActive }) =>
           isActive
@@ -187,11 +167,11 @@ const Navbar = () => {
         }
       >
         Manage My Item
-      </NavLink>
+      </NavLink> */}
       {/* Logout Button (only when logged in) */}
       <button
         onClick={handleLogout}
-        className="text-slate-700 hover:text-blue-700 font-medium text-left"
+        className="text-text1 hover:text-primary font-medium text-left"
       >
         Logout{" "}
       </button>
@@ -255,7 +235,7 @@ const Navbar = () => {
           {/* Toggle theme */}
           <button
             onClick={toggleTheme}
-            className="btn btn-ghost ml-2 text-primary rounded-full px-3 mr-3 border text-xl flex items-center justify-center"
+            className=" ml-2 text-primary border-primary rounded-full w-8 h-8 md:w-11 md:h-11  mr-3 border text-xl flex items-center justify-center"
             aria-label="Toggle Theme"
           >
             {theme === "light" ? <FaMoon /> : <FaSun />}
@@ -282,12 +262,12 @@ const Navbar = () => {
                   {dropdownVisible ? (
                     <IoIosArrowUp
                       size={22}
-                      className="bg-base-200 border rounded-full"
+                      className="bg-text1 text-neutral border rounded-full"
                     />
                   ) : (
                     <IoIosArrowDown
                       size={22}
-                      className="bg-base-200 rounded-full"
+                      className="bg-text1 text-neutral border rounded-full"
                     />
                   )}
                 </span>
@@ -306,9 +286,6 @@ const Navbar = () => {
               Login
             </Link>
           )}
-          {/* <div className="w-12 h-12 flex items-center justify-center ml-4 bg-primary rounded-full">
-            1
-          </div> */}
         </div>
       </div>
     </div>
