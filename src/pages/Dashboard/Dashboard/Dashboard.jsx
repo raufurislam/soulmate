@@ -102,23 +102,26 @@ const Dashboard = () => {
 
   const profileLinks = (
     <div className="flex flex-col text-left gap-3 px-5 py-2">
-      {/* <NavLink
-        to="/myItems"
-        className={({ isActive }) =>
-          isActive
-            ? "text-blue-500 font-medium underline-offset-4 underline "
-            : "text-slate-700 hover:text-blue-700 font-medium"
-        }
-      >
-        Manage My Item
-      </NavLink> */}
-      {/* Logout Button (only when logged in) */}
-      <button
-        onClick={handleLogout}
-        className="text-text1 hover:text-primary font-medium text-left"
-      >
-        Logout{" "}
-      </button>
+      {/* Check if user exists before displaying their info */}
+      {user ? (
+        <>
+          <div className="text-text1 font-medium">
+            <p>{user.displayName || "User"}</p>
+            <p className="text-sm text-text2">{user.email}</p>
+          </div>
+
+          <div className="border w-full"></div>
+
+          <button
+            onClick={handleLogout}
+            className="text-text1 hover:text-primary font-medium text-left"
+          >
+            Logout
+          </button>
+        </>
+      ) : (
+        <p>Loading...</p> // Or a different loading state
+      )}
     </div>
   );
 
