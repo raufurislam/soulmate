@@ -142,7 +142,7 @@ const Biodatas = () => {
       <div className="lg:hidden mb-4">
         <button
           onClick={() => setIsDrawerOpen(true)}
-          className="bg-red-500 text-white p-2 rounded font-bold w-full"
+          className="bg-primary text-white p-2 rounded font-bold w-full"
         >
           Open Filters
         </button>
@@ -151,7 +151,7 @@ const Biodatas = () => {
       {/* Drawer for sm/md */}
       {isDrawerOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-end">
-          <div className="w-3/4 sm:w-1/2 bg-red-500 p-4 h-full overflow-y-auto">
+          <div className="w-3/4 sm:w-1/2 bg-primary p-4 h-full overflow-y-auto">
             <h3 className="text-white font-semibold">Filters</h3>
             <div className="mt-4">
               <label className="block text-white">Min Age</label>
