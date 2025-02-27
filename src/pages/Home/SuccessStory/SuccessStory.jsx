@@ -175,13 +175,13 @@ const SuccessStory = () => {
           <Slider ref={sliderRef} {...settings}>
             {marriages.map((marriage) => (
               <div key={marriage._id} className="">
-                <div className="flex flex-col lg:flex-row items-center bg-neutral text-gray-900 rounded-xl relative">
+                <div className="flex flex-col md:flex-row items-center bg-neutral text-gray-900 rounded-xl relative">
                   {/* Image Section */}
                   <div className="lg:w-1/2 w-full  relative">
                     <img
                       src={marriage.coupleImageLink}
                       alt="Couple"
-                      className="w-full h-[480px] rounded-l-xl object-cover"
+                      className="w-full lg:h-[480px] md:h-[320px] h-[320px] rounded-xl md:rounded-l-xl object-cover"
                     />
                     {/* <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent"></div> */}
                     <div className="absolute bottom-4 left-4 bg-black/50 text-white text-sm px-3 py-1 rounded-lg">
@@ -217,14 +217,14 @@ const SuccessStory = () => {
 
           {/* Custom Navigation Buttons (Inside the Slider) */}
           <button
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-transparent text-primary ml-3 border-primary border rounded-full p-3 shadow-lg hover:bg-gray-300 transition-all"
+            className="absolute left-4 top-1/3 md:top-1/2 transform -translate-y-1/2 bg-transparent text-primary ml-3 border-primary border rounded-full p-3 shadow-lg hover:bg-gray-300 transition-all"
             onClick={() => sliderRef.current.slickPrev()}
           >
             <FaArrowLeft />
           </button>
 
           <button
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-transparent text-primary mr-3 rounded-full p-3  border-primary border shadow-lg hover:bg-gray-300 transition-all"
+            className="absolute right-4 top-1/3 md:top-1/2 transform -translate-y-1/2 bg-transparent text-primary mr-3 rounded-full p-3  border-primary border shadow-lg hover:bg-gray-300 transition-all"
             onClick={() => sliderRef.current.slickNext()}
           >
             <FaArrowRight />

@@ -80,7 +80,7 @@ const PremiumMember = () => {
       </div>
 
       {/* Premium Member Cards */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
         {displayedMembers.map((member) => (
           <div
             key={member.biodataId}
@@ -92,15 +92,15 @@ const PremiumMember = () => {
               className="w-full h-48 object-cover rounded-lg"
             />
             <div className="p-4">
-              <div className="flex justify-between">
-                <h2 className="md:text-lg font-bold text-text1">
+              <div className="flex  justify-between">
+                <h2 className="md:text-lg text-sm font-bold text-text1">
                   {member.name}
                 </h2>
                 <h3
                   className={`font-medium px-3 rounded-lg ${
                     member.biodataType === "Male"
-                      ? "bg-green-200 text-text3 border border-green-500 "
-                      : "bg-pink-200 text-text3 border border-pink-500 "
+                      ? "bg-green-200 text-text3 text-xs border md:text-sm border-green-500 "
+                      : "bg-pink-200 text-text3 text-xs md:text-sm border border-pink-500 "
                   }`}
                 >
                   {member.biodataType}

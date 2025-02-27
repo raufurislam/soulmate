@@ -335,7 +335,17 @@ const Dashboard = () => {
           <button className="lg:hidden" onClick={() => setMenuOpen(true)}>
             <FiMenu size={24} />
           </button>
-          <h2 className="text-xl font-bold">Dashboard</h2>
+          <h2 className="text-xl font-bold hidden lg:block">Dashboard</h2>
+          <Link to="/" className="lg:hidden flex items-center space-x-3">
+            <img
+              src="https://img.icons8.com/?size=40&id=33124&format=png"
+              className="h-8"
+              alt="Company Logo"
+            />
+            <span className="self-center text-2xl font-semibold whitespace-nowrap">
+              Soulmate
+            </span>
+          </Link>
           <div className="flex items-center">
             {/* Toggle theme */}
             <button
